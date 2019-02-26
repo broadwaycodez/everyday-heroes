@@ -1,68 +1,50 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Everyday Heroes - Web
 
-## Available Scripts
+The Everyday Heroes app is a daily habit tracker to train your inner hero. This technology serves as a tool to track progress through the Everyday Heroes program.
 
-In the project directory, you can run:
+This application is served by the Everyday Heros API. Find the API code on GitHub [here](https://github.com/broadwaycodez/everyday-heroes-api)
 
-### `npm start`
+The web app takes a mobile-first approach, as users are often meant to accomplish daily tasks while away from their home or desk. 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## What is Everyday Heroes?
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Everyday Heros uses the vocabulary of online gaming in order to encourage users to improve their lives and the community around them. Users complete quests, gain experience points, and level up over time by practicing the daily habits outlined in the program. Your progress through the program is measured by the practice of <b>Five Heroic Habits: Focus, Power, Balance, Treasure, and Tribe</b>. Each day, users are assigned small, actionable tasks which improve your ability in each of the heroic habits. Our goal is to improve the world by beginning with ourselves. We can be better husbands, wives, and parents. We can be more productive employees. We can contribute more to our communities. We can take better care of our bodies. We can allow space for our own mental well-being. All of these things are possible! By taking small, measurable actions every day, we will--in time--become the heroes we were meant to be. 
 
-### `npm test`
+## Development
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project was built in React, using Axios for HTTP requests and D3.js for data visualization. Secure user authentication is handled with JSON Web Tokens and password hashing by bcrypt.
 
-### `npm run build`
+### Stack Information
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Stack Layer | Technology Used |
+| :---: | :---: |
+| Database | Postgresql |
+| [API](https://github.com/broadwaycodez/everyday-heroes-api) | Ruby on Rails |
+| Web Front-end | React |
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React.js
+- D3.js
+- jwt-decode
+- axios
+- react-router-dom
 
-### `npm run eject`
+## Diagrams
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<details>
+	<summary>Component Hierarchy</summary>
+	<img src="https://res.cloudinary.com/brian-ogilvie/image/upload/v1551196953/Everyday%20Heroes/component_hierarchy.jpg" alt="component hierarchy">
+</details>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<details>
+	<summary>Wireframes</summary>
+	<p>Today View</p>
+	<img src="https://res.cloudinary.com/brian-ogilvie/image/upload/v1551196953/Everyday%20Heroes/today_page.jpg" alt="Today View">
+	<p>Star Meter</p>
+	<img src="https://res.cloudinary.com/brian-ogilvie/image/upload/v1551196953/Everyday%20Heroes/star_meter.jpg" alt="star meter">
+	<p>Task Description</p>
+	<img src="https://res.cloudinary.com/brian-ogilvie/image/upload/v1551196953/Everyday%20Heroes/task_description.jpg" alt="task description">
+	<p>Login Page</p>
+	<img src="https://res.cloudinary.com/brian-ogilvie/image/upload/v1551196953/Everyday%20Heroes/login_page.jpg" alt="login page">
+</details>
