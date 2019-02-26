@@ -48,3 +48,8 @@ This project was built in React, using Axios for HTTP requests and D3.js for dat
 	<p>Login Page</p>
 	<img src="https://res.cloudinary.com/brian-ogilvie/image/upload/v1551196953/Everyday%20Heroes/login_page.jpg" alt="login page">
 </details>
+
+<details>
+	<summary>Priority Matrix</summary>
+	<img src="https://res.cloudinary.com/brian-ogilvie/image/upload/v1551201229/Everyday%20Heroes/priority_matrix.jpg" alt="priority matrix">
+</details>
