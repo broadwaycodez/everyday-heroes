@@ -13,8 +13,8 @@ class Authorization extends React.Component {
   render() {
     return (
       <div className="Authorization">
-        <Login />
-        <Register />
+        <Login {...this.props} />
+        <Register {...this.props} />
       </div>
     )
   }

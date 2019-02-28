@@ -1,9 +1,12 @@
 import React from 'react'
 import './Header.css'
 
-const Header = props => {
+const Header = ({currentUser, logoutUser}) => {
   return (
-    <h1>Header</h1>
+    <div className="Header">
+      <h1>Header</h1>
+      <button className="header__logout" onClick={logoutUser}>Log Out</button>
+    </div>
   )
 }
 
