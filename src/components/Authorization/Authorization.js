@@ -7,14 +7,37 @@ import Register from './Register'
 class Authorization extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      activeScreen: 'register',
+      leaving: false,
+    }
+  }
+
+  dismiss = async () => {
+    await this.setState({leaving: true})
+    setTimeout(this.props.dismiss, 600)
+  }
+
+  switchScreen = () => {
+    this.setState(prev => {
+      const activeScreen = prev.activeScreen === 'register' ? 'login' : 'register'
+      return { activeScreen }
+    })
   }
 
   render() {
+    const activeScreen = this.state.activeScreen === 'register' ? <Register {...this.props} /> : <Login {...this.props} />
+    const buttonText = this.state.activeScreen === 'register' ? 'Already a member?' : "Don't have an account?"
+    const leaving = this.state.leaving
     return (
-      <div className="Authorization">
-        <Login {...this.props} />
-        <Register {...this.props} />
+      <div className={'Authorization-wrapper' + (leaving ? ' Authorization-wrapper--leaving' : '')}>
+        <div className="Authorization">
+          <div className="authorization__dismiss" onClick={this.dismiss}>X</div>
+          { activeScreen }
+          <div className="authorization__switch">
+            <button className="authorization__switch-btn" onClick={this.switchScreen}>{buttonText}</button>
+          </div>
+        </div>
       </div>
     )
   }

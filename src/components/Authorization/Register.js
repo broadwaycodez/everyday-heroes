@@ -14,11 +14,16 @@ class Register extends React.Component {
       password: '',
       password_confirmation: '',
       errors: [],
+      working: false
     }
   }
 
   onFormSubmit = async (e) => {
     e.preventDefault()
+    if (this.state.working) {
+      return null
+    }
+    await this.setState({working: true})
     const newUser = {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
@@ -29,18 +34,27 @@ class Register extends React.Component {
     }
     const {isValid, errors} = Validate.register(newUser)
     if (!isValid) {
-      return this.setState({errors})
+      return this.setState({
+        errors: errors,
+        working: false
+      })
     }
     const data = await Auth.register(newUser)
     
     if (data.errors) {
-      return this.setState({errors: data.errors})
+      return this.setState({
+        errors: data.errors,
+        working: false
+      })
     }
     if (data.user) {
       const signInData = await Auth.signIn(newUser.email, newUser.password)
       const {auth_token, errors} = signInData
       if (errors) {
-        return this.setState({errors})
+        return this.setState({
+          errors: errors,
+          working: false
+        })
       }
       this.props.setCurrentUser(auth_token)
     }
@@ -55,12 +69,9 @@ class Register extends React.Component {
   }
 
   render() {
-    if (this.props.currentUser) {
-      return <div>You are already logged in.</div>
-    }
     return (
       <div className="Register">
-        <h1>Register</h1>
+        <h1 className="register__heading">Choose to be a Hero!</h1>
         <form className="register__form" onSubmit={this.onFormSubmit}>
           <div className="register__form-row">
             <label htmlFor="first_name">First Name</label>
@@ -88,7 +99,6 @@ class Register extends React.Component {
           </div>
           <button className="register__submit">Sign Up!</button>
         </form>
-        {/* <Link to="/login">Already have an account?</Link> */}
       </div>
     )
   }

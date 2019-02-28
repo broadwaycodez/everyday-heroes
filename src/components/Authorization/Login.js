@@ -42,12 +42,9 @@ class Login extends React.Component {
 
   render() {
     const errors = this.state.errors
-    if (this.props.currentUser) {
-      return <div>You are already logged in.</div>
-    }
     return (
       <div className="Login">
-        <h1>Sign In</h1>
+        <h1 className="login__heading">Welcome, Hero!</h1>
         {errors.user_authentication && <div className="login__error-message">{errors.user_authentication}</div>}
         <form className="login__form" onSubmit={this.onFormSubmit}>
           <div className="login__form-row">
@@ -62,7 +59,6 @@ class Login extends React.Component {
           </div>
           <button className="login__submit">Sign in!</button>
         </form>
-        {/*<Link to="/register">Need to create an account?</Link> */}
       </div>    
     )
   }

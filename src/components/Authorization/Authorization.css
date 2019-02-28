@@ -1,0 +1,35 @@
+.Authorization-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 20;
+  background-color: rgba(255, 255, 255, .8);
+  animation: modal-enter .5s ease;
+  /* transition: padding .5s ease, background-color .5s ease; */
+}
+
+.Authorization-wrapper--leaving {
+  padding-top: 100vh;
+  background-color: rgba(255, 255, 255, 0);
+  animation: modal-exit .5s ease;
+}
+
+.Authorization {
+  position: relative;
+  padding: 10px;
+}
+
+.authorization__dismiss {
+  text-align: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.register__heading, .login__heading {
+  margin-top: 0;
+}

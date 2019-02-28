@@ -11,8 +11,17 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      currentUser: null
+      currentUser: null,
+      authVisible: false,
     }
+  }
+
+  displayAuth = () => {
+    this.setState({authVisible: true})
+  }
+
+  dismissAuth = () => {
+    this.setState({authVisible: false})
   }
 
   setCurrentUser = (auth_token, setLocal = true) => {
@@ -22,7 +31,8 @@ class App extends Component {
     setAuthToken(auth_token)
     const decoded = jwt_decode(auth_token)
     this.setState({
-      currentUser: decoded.user_id
+      currentUser: decoded.user_id,
+      authVisible: false
     })
   }
 
@@ -30,6 +40,8 @@ class App extends Component {
     if (localStorage.brianToken) {
       const auth_token = localStorage.brianToken
       this.setCurrentUser(auth_token, false)
+    } else {
+      this.setState({authVisible: true})
     }
   }
   
@@ -46,9 +58,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {`Current User: ${this.state.currentUser}`}
-        <Header currentUser={this.state.currentUser} logoutUser={this.logoutUser} />
-        <Authorization currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} />
+        <Header currentUser={this.state.currentUser} logoutUser={this.logoutUser} requestAuth={this.displayAuth} />
+        { this.state.authVisible && <Authorization currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} dismiss={this.dismissAuth} /> }
         <Main currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} />
       </div>
     )
