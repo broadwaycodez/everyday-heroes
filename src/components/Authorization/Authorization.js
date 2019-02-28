@@ -9,13 +9,7 @@ class Authorization extends React.Component {
     super(props)
     this.state = {
       activeScreen: 'register',
-      leaving: false,
     }
-  }
-
-  dismiss = async () => {
-    await this.setState({leaving: true})
-    setTimeout(this.props.dismiss, 600)
   }
 
   switchScreen = () => {
@@ -28,11 +22,11 @@ class Authorization extends React.Component {
   render() {
     const activeScreen = this.state.activeScreen === 'register' ? <Register {...this.props} /> : <Login {...this.props} />
     const buttonText = this.state.activeScreen === 'register' ? 'Already a member?' : "Don't have an account?"
-    const leaving = this.state.leaving
+    const leaving = this.props.leaving
     return (
       <div className={'Authorization-wrapper' + (leaving ? ' Authorization-wrapper--leaving' : '')}>
         <div className="Authorization">
-          <div className="authorization__dismiss" onClick={this.dismiss}>X</div>
+          <div className="authorization__dismiss" onClick={this.props.dismiss}>X</div>
           { activeScreen }
           <div className="authorization__switch">
             <button className="authorization__switch-btn" onClick={this.switchScreen}>{buttonText}</button>

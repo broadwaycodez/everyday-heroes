@@ -1,0 +1,7 @@
+.DailyTask {
+  margin: 10px;
+}
+
+.DailyTask h3, .DailyTask h4 {
+  margin: 0;
+}

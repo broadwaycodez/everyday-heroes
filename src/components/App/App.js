@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       currentUser: null,
       authVisible: false,
+      authLeaving: false,
     }
   }
 
@@ -20,20 +21,28 @@ class App extends Component {
     this.setState({authVisible: true})
   }
 
-  dismissAuth = () => {
-    this.setState({authVisible: false})
+  dismissAuth = async () => {
+    await this.setState({
+      authLeaving: true,
+    })
+    setTimeout(() => {
+      this.setState({
+        authVisible: false,
+        authLeaving: false,
+      })
+    }, 600)
   }
 
-  setCurrentUser = (auth_token, setLocal = true) => {
+  setCurrentUser = async (auth_token, setLocal = true) => {
     if (setLocal) {
       localStorage.setItem("brianToken", auth_token)
     }
     setAuthToken(auth_token)
     const decoded = jwt_decode(auth_token)
-    this.setState({
+    await this.setState({
       currentUser: decoded.user_id,
-      authVisible: false
     })
+    this.dismissAuth()
   }
 
   checkForAuthToken = () => {
@@ -59,7 +68,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header currentUser={this.state.currentUser} logoutUser={this.logoutUser} requestAuth={this.displayAuth} />
-        { this.state.authVisible && <Authorization currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} dismiss={this.dismissAuth} /> }
+        { this.state.authVisible && <Authorization currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} dismiss={this.dismissAuth} leaving={this.state.authLeaving} /> }
         <Main currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} />
       </div>
     )

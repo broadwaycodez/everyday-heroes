@@ -1,5 +1,6 @@
 import React from 'react'
 import './Header.css'
+import { Link } from 'react-router-dom'
 
 const Header = ({currentUser, logoutUser, requestAuth}) => {
   const button = (currentUser ? 
@@ -9,7 +10,13 @@ const Header = ({currentUser, logoutUser, requestAuth}) => {
   return (
     <div className="Header">
       <h1>Header</h1>
-      {button}
+      <nav>
+        <ul>
+          <li><Link to="/today">Today</Link></li>
+          <li><Link to="/progress">Progress</Link></li>
+        </ul>
+        {button}
+      </nav>
     </div>
   )
 }
