@@ -39,6 +39,7 @@ class App extends Component {
     }
     setAuthToken(auth_token)
     const decoded = jwt_decode(auth_token)
+    console.log(decoded)
     await this.setState({
       currentUser: decoded.user_id,
     })
@@ -57,7 +58,10 @@ class App extends Component {
   logoutUser = () => {
     localStorage.removeItem('brianToken')
     setAuthToken(false)
-    this.setState({currentUser: null})
+    this.setState({
+      currentUser: null,
+      authVisible: true,
+    })
   }
 
   componentDidMount() {

@@ -26,7 +26,6 @@ class Authorization extends React.Component {
     return (
       <div className={'Authorization-wrapper' + (leaving ? ' Authorization-wrapper--leaving' : '')}>
         <div className="Authorization">
-          <div className="authorization__dismiss" onClick={this.props.dismiss}>X</div>
           { activeScreen }
           <div className="authorization__switch">
             <button className="authorization__switch-btn" onClick={this.switchScreen}>{buttonText}</button>

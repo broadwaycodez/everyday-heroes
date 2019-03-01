@@ -8,28 +8,74 @@
   justify-content: center;
   align-items: flex-start;
   z-index: 20;
-  background-color: rgba(255, 255, 255, .8);
+  background-color: rgba(157, 4, 4, 1);
   animation: modal-enter .5s ease;
-  /* transition: padding .5s ease, background-color .5s ease; */
 }
 
 .Authorization-wrapper--leaving {
   padding-top: 100vh;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(157, 4, 4, 0);
   animation: modal-exit .5s ease;
 }
 
 .Authorization {
   position: relative;
-  padding: 10px;
+  width: 100%;
+  padding: 20px;
+  padding-top: 20vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 .authorization__dismiss {
   text-align: right;
-  font-size: 1.5rem;
   cursor: pointer;
 }
 
-.register__heading, .login__heading {
+.authorization__heading {
   margin-top: 0;
+  text-shadow: 2px 4px 0 rgba(0,0,0,.5);
+  text-align: center;
+}
+
+.Login, .Register {
+  width: 100%;
+  max-width: 500px;
+
+}
+
+.authorization__form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.authorization__form-row {
+  width: 100%;
+  font-size: 1rem;
+  margin: 5px 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.authorization__form-row input {
+  font-size: 1rem;
+  width: 60%;
+  padding: 3px;
+}
+
+.authorization__switch {
+  margin-top: 10px;
+}
+
+.authorization__switch-btn, .authorization__submit {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: white;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }

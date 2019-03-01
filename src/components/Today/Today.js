@@ -30,7 +30,7 @@ class Today extends React.Component {
 
     return (
       <div className="Today">
-        <h1>Today</h1>
+        <h2 className="main__page-title">Today</h2>
         <TaskList tasks={this.state.tasks} />
       </div>
     )

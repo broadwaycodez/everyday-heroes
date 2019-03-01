@@ -71,33 +71,33 @@ class Register extends React.Component {
   render() {
     return (
       <div className="Register">
-        <h1 className="register__heading">Choose to be a Hero!</h1>
-        <form className="register__form" onSubmit={this.onFormSubmit}>
-          <div className="register__form-row">
+        <h1 className="authorization__heading">Choose to be a Hero!</h1>
+        <form className="authorization__form" onSubmit={this.onFormSubmit}>
+          <div className="authorization__form-row">
             <label htmlFor="first_name">First Name</label>
             <input type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
           </div>
-          <div className="register__form-row">
+          <div className="authorization__form-row">
             <label htmlFor="last_name">Last Name</label>
             <input type="text" name="last_name" value={this.state.last_name} onChange={this.handleChange} />
           </div>
-          <div className="register__form-row">
+          <div className="authorization__form-row">
             <label htmlFor="email">Email</label>
             <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
           </div>
-          <div className="register__form-row">
+          <div className="authorization__form-row">
             <label htmlFor="screen_name">Screen Name</label>
             <input type="text" name="screen_name" value={this.state.screen_name} onChange={this.handleChange} />
           </div>
-          <div className="register__form-row">
+          <div className="authorization__form-row">
             <label htmlFor="password">Password</label>
             <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
           </div>
-          <div className="register__form-row">
+          <div className="authorization__form-row">
             <label htmlFor="password_confirmation">Confirm Password</label>
             <input type="password" name="password_confirmation" value={this.state.password_confirmation} onChange={this.handleChange} />
           </div>
-          <button className="register__submit">Sign Up!</button>
+          <button className="authorization__submit">Sign Up!</button>
         </form>
       </div>
     )

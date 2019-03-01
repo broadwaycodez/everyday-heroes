@@ -44,20 +44,20 @@ class Login extends React.Component {
     const errors = this.state.errors
     return (
       <div className="Login">
-        <h1 className="login__heading">Welcome, Hero!</h1>
-        {errors.user_authentication && <div className="login__error-message">{errors.user_authentication}</div>}
-        <form className="login__form" onSubmit={this.onFormSubmit}>
-          <div className="login__form-row">
+        <h1 className="authorization__heading">Welcome, Hero!</h1>
+        {errors.user_authentication && <div className="authorization__error-message">{errors.user_authentication}</div>}
+        <form className="authorization__form" onSubmit={this.onFormSubmit}>
+          <div className="authorization__form-row">
             <label htmlFor="email">Email</label>
             <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
-            {errors.email && <div className="login__error-message">{errors.email}</div>}
+            {errors.email && <div className="authorization__error-message">{errors.email}</div>}
           </div>
-          <div className="login__form-row">
+          <div className="authorization__form-row">
             <label htmlFor="password">Password</label>
             <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-            {errors.password && <div className="login__error-message">{errors.password}</div>}
+            {errors.password && <div className="authorization__error-message">{errors.password}</div>}
           </div>
-          <button className="login__submit">Sign in!</button>
+          <button className="authorization__submit">Sign in!</button>
         </form>
       </div>    
     )

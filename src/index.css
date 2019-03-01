@@ -7,6 +7,24 @@ html, body {
   padding: 0;
 }
 
+body {
+  height: 100vh;
+  padding-top: 2.8rem;
+  overflow: scroll;
+  background-color: rgba(157, 4, 4, 1);
+  background-image: radial-gradient(circle at 50% 50%, rgba(248, 222, 6, 1), rgba(157, 4, 4, 1));
+  background-attachment: fixed;
+  color: white;
+}
+
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Permanent Marker', cursive;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -19,10 +37,10 @@ html, body {
 @keyframes modal-enter {
   0% {
     padding-top: 100vh;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(157, 4, 4, 0);
   }
   20% {
-    background-color: rgba(255, 255, 255, .8);
+    background-color: rgba(157, 4, 4, 1);
   }
   100% {
     padding-top: 0;
@@ -32,10 +50,10 @@ html, body {
 @keyframes modal-exit {
   0% {
     padding-top: 0;
-    background-color: rgba(255, 255, 255, .8);
+    background-color: rgba(157, 4, 4, 1);
   }
   80% {
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(157, 4, 4, 0);
   }
   100% {
     padding-top: 100vh;

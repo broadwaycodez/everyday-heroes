@@ -30,7 +30,7 @@ class Progress extends React.Component {
     const progress = this.state.progress
     return (
       <div className="Progress">
-      <h1>Progress</h1>
+      <h2 className="main__page-title">Progress</h2>
       { progress ? <ProgressMeter progress={progress} /> : <div>Loading...</div> }
       </div>
     )
