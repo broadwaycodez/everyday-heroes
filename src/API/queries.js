@@ -17,6 +17,14 @@ const Queries = {
       return {errors: [e.message]}
     }
   },
+  async getAlreadyCompleted(habitId) {
+    try {
+      const res = await axios.get(`/today/assignments/${habitId}`)
+      return res.data
+    } catch (e) {
+      return {errors: [e.message]}
+    }
+  },
   async getTask(task_id) {
     try {
       const res = await axios.get(`/tasks/${task_id}`)

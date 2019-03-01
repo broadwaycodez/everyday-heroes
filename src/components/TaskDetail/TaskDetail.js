@@ -5,6 +5,7 @@ import { SegmentedControl } from 'segmented-control'
 import { Redirect } from 'react-router-dom'
 
 import Queries from '../../API/queries'
+import Utils from '../../utils/utils'
 
 class TaskDetail extends React.Component {
   constructor() {
@@ -14,7 +15,8 @@ class TaskDetail extends React.Component {
       tasks: null,
       taskIndex: 0,
       errors: null,
-      complete: false
+      complete: false,
+      alreadyCompleted: false
     }
   }
 
@@ -22,6 +24,17 @@ class TaskDetail extends React.Component {
     const data = await Queries.getHabitInfo(this.props.habitId)
     const {habit, tasks, errors} = data
     this.setState({habit, tasks, errors})
+  }
+
+  getCompletedTask = async () => {
+    const data = await Queries.getAlreadyCompleted(this.props.habitId)
+    const { completed, message, errors } = data
+    if (errors) {
+      return this.setState({errors})
+    }
+    if (completed) {
+      this.setState({alreadyCompleted: true})
+    }
   }
 
   handleSelectChange = (newValue) => {
@@ -33,6 +46,7 @@ class TaskDetail extends React.Component {
   }
 
   componentDidMount() {
+    this.getCompletedTask()
     this.getHabitInfo()
   }
 
@@ -52,8 +66,13 @@ class TaskDetail extends React.Component {
       })
       return (
         <div className="TaskDetail">
-          <h1>Today's tasks for {habit.name}</h1>
           <div><Link to="/today">Back</Link></div>
+          <h2>{Utils.capitalize(habit.name)}</h2>
+          {this.state.alreadyCompleted ? (
+            <h3>You have already completed {Utils.capitalize(habit.name)} today</h3>
+          ) : (
+            <h3>Select one of the following essential elements to complete today:</h3>
+          )}
           <SegmentedControl
             className="taskDetail__segmented" 
             name="elementSelector" 
@@ -65,9 +84,11 @@ class TaskDetail extends React.Component {
             <p>{selectedTask.title}</p>
             <p>{selectedTask.description}</p>
           </div>  
-          <button className="taskDetail__completed" onClick={this.completeTask}>
-            Mark As Completed
-          </button>
+          { !this.state.alreadyCompleted && (
+            <button className="taskDetail__completed" onClick={this.completeTask}>
+              Mark As Completed
+            </button>
+          )}
         </div>
       )
     } else {
