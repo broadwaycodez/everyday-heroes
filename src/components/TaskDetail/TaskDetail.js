@@ -28,7 +28,7 @@ class TaskDetail extends React.Component {
 
   getCompletedTask = async () => {
     const data = await Queries.getAlreadyCompleted(this.props.habitId)
-    const { completed, message, errors } = data
+    const { completed, errors } = data
     if (errors) {
       return this.setState({errors})
     }
