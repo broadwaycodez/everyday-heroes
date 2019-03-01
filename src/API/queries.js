@@ -16,6 +16,22 @@ const Queries = {
     } catch (e) {
       return {errors: [e.message]}
     }
+  },
+  async getTask(task_id) {
+    try {
+      const res = await axios.get(`/tasks/${task_id}`)
+      return res.data
+    } catch (e) {
+      return {errors: [e.message]}
+    }
+  },
+  async completeTask(taskId) {
+    try {
+      const res = await axios.post(`/assignments`, {daily_task_id: taskId})
+      return res.data
+    } catch (e) {
+      return {errors: [e.message]}
+    }
   }
 }
 
