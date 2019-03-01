@@ -27,7 +27,7 @@ const Main = ({currentUser, setCurrentUser}) => {
         }} />
         <Route path="/progress" render={ () => {
           if (currentUser) {
-            return <Progress />
+            return <Progress currentUser={currentUser} />
           } else {
             return <Redirect to="/" />
           }

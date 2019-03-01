@@ -32,6 +32,14 @@ const Queries = {
     } catch (e) {
       return {errors: [e.message]}
     }
+  },
+  async getProgress(userId) {
+    try {
+      const res = await axios.get(`/users/${userId}/progress`)
+      return res.data
+    } catch (e) {
+      return {errors: [e.message]}
+    }
   }
 }
 
