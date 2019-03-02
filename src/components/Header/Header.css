@@ -1,13 +1,19 @@
-.Header {
+.Header-wrapper {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 15;
-  padding: .5rem;
   background-color: rgba(157, 4, 4, 1);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 4px 2px rgba(0,0,0,.5);
+}
+
+.Header {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 800px;
+  padding: .5rem;
 }
 
 .header__top-line {
@@ -68,4 +74,6 @@
   color: white;
   margin: 8px auto;
   padding: 0;
+  background: transparent;
+  border:0;
 }

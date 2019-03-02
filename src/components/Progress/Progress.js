@@ -9,17 +9,18 @@ class Progress extends React.Component {
     super()
     this.state = {
       progress: null,
+      level_num: null,
       errors: null,
     }
   }
 
   getProgressData = async () => {
-    const {points, errors} = await Queries.getProgress(this.props.currentUser.id)
+    const {points, level_num, errors} = await Queries.getProgress(this.props.currentUser.id)
     if (errors) {
       return this.setState({errors})
     }
     const progress = points
-    this.setState({progress})
+    this.setState({progress, level_num})
   }
 
   componentDidMount() {
@@ -28,9 +29,10 @@ class Progress extends React.Component {
 
   render() {
     const progress = this.state.progress
+    const levelNum = this.state.level_num
     return (
       <div className="Progress">
-      <h2 className="main__page-title">Progress</h2>
+      <h2 className="main__page-title">Level {levelNum} Progress</h2>
       { progress ? <ProgressMeter progress={progress} /> : <div>Loading...</div> }
       </div>
     )

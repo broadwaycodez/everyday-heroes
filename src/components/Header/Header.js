@@ -38,18 +38,20 @@ class Header extends React.Component {
       <button id="login-btn" className="header__logout" onClick={this.handleLogoutClick}>Register/Sign In</button>
     )
     return (
-      <div className="Header">
-        <div className="header__top-line">
-          <h1 className="header__logo">Everyday Heroes</h1>
-          <MenuButton visible={menuIsVisible} toggle={this.toggleMenuVisible} />
+      <div className="Header-wrapper">
+        <div className="Header">
+          <div className="header__top-line">
+            <h1 className="header__logo">Everyday Heroes</h1>
+            <MenuButton visible={menuIsVisible} toggle={this.toggleMenuVisible} />
+          </div>
+          <nav className={`header__nav ${menuIsVisible ? 'header__nav--visible' : ''}`}>
+            <ul className="header__nav-list">
+              <li className="header__nav-item" onClick={this.toggleMenuVisible}><Link to="/progress">Progress</Link></li>
+              <li className="header__nav-item" onClick={this.toggleMenuVisible}><Link to="/today">Today</Link></li>
+            </ul>
+            {button}
+          </nav>
         </div>
-        <nav className={`header__nav ${menuIsVisible ? 'header__nav--visible' : ''}`}>
-          <ul className="header__nav-list">
-            <li className="header__nav-item" onClick={this.toggleMenuVisible}><Link to="/progress">Progress</Link></li>
-            <li className="header__nav-item" onClick={this.toggleMenuVisible}><Link to="/today">Today</Link></li>
-          </ul>
-          {button}
-        </nav>
       </div>
     )
   }
