@@ -7,6 +7,7 @@ import Header from '../Header/Header'
 import Main from '../Main/Main'
 import Authorization from '../Authorization/Authorization'
 import Queries from '../../API/queries'
+import UserMessages from '../UserMessages/UserMessages'
 
 class App extends Component {
   constructor() {
@@ -15,7 +16,8 @@ class App extends Component {
       currentUser: null,
       authVisible: false,
       authLeaving: false,
-      errors: null,
+      errors: ["Something Went Wrong"],
+      messages: ["Welcome to Everyday Heroes. You're gonna love it here!"],
     }
   }
 
@@ -76,6 +78,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <UserMessages errors={this.state.errors} messages={this.state.messages} />
         <Header currentUser={this.state.currentUser} logoutUser={this.logoutUser} requestAuth={this.displayAuth} />
         { this.state.authVisible && <Authorization currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} dismiss={this.dismissAuth} leaving={this.state.authLeaving} /> }
         <Main currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} />

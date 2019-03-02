@@ -1,0 +1,41 @@
+.UserMessages {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  margin-left: -150px;
+  width: 300px;
+  background: transparent;
+  z-index: 19;
+}
+
+.MessageRow {
+  padding: 5px 10px;
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  /* align-items: flex-start; */
+  border-radius: 0 0 8px 8px;
+  box-shadow: 1px 2px 0 rgba(0,0,0,.5);
+  font-size: .8rem;
+  transition: all .3s;
+}
+
+.messageRow--message {
+  background-color: green;
+}
+
+.messageRow--error {
+  background-color: red; 
+}
+
+.messageRow__dismiss {
+  margin-left: 10px;
+  padding-left: 10px;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 1px 2px 0 rgba(0,0,0,.5);
+  border-left: 1px solid rgba(255, 255, 255, .4);
+}
