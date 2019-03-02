@@ -24,6 +24,7 @@ class Progress extends React.Component {
   }
 
   componentDidMount() {
+    window.scroll({top: 0, behavior: 'smooth'})
     this.getProgressData()
   }
 

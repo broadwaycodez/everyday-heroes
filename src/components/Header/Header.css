@@ -61,7 +61,7 @@
   padding: .8rem;
   line-height: 1em;
   font-size: 1.2rem;
-  border-bottom: 1px solid rgba(100, 100, 100, .6);
+  border-bottom: 1px solid rgba(255, 255, 255, .4);
 }
 
 .header__nav-item a {

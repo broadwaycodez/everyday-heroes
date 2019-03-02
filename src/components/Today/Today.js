@@ -22,6 +22,7 @@ class Today extends React.Component {
   }
 
   componentDidMount() {
+    window.scroll({top: 0, behavior: 'smooth'})
     this.getToday()
   }
 

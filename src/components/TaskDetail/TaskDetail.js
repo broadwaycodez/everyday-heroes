@@ -53,6 +53,7 @@ class TaskDetail extends React.Component {
   }
 
   componentDidMount() {
+    window.scroll({top: 0, behavior: 'smooth'})
     this.getCompletedTask()
     this.getHabitInfo()
   }
@@ -69,7 +70,7 @@ class TaskDetail extends React.Component {
       const taskOptions = this.state.tasks.map((task, i) => {
         const isDefault = i === this.state.taskIndex ? true : false
         return (
-          {label: task.element, value: i, default: isDefault}
+          {label: Utils.capitalize(task.element), value: i, default: isDefault}
         )
       })
       return (
@@ -88,7 +89,7 @@ class TaskDetail extends React.Component {
             setValue={newValue => this.handleSelectChange(newValue)} 
           />
           <div className="taskDetail__content" key={selectedTask.id}>
-            <p className="taskDetail__p">{selectedTask.title}</p>
+            <p className="taskDetail__title">{selectedTask.title}</p>
             <p className="taskDetail__p">{selectedTask.description}</p>
           </div>  
           { !this.state.alreadyCompleted && (
