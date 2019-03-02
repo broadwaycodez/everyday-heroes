@@ -3,6 +3,7 @@ import './TaskDetail.css'
 import { Link } from 'react-router-dom'
 import { SegmentedControl } from 'segmented-control'
 import { Redirect } from 'react-router-dom'
+import BottomButton from '../BottomButton/BottomButton'
 
 import Queries from '../../API/queries'
 import Utils from '../../utils/utils'
@@ -94,9 +95,9 @@ class TaskDetail extends React.Component {
             <p className="taskDetail__p">{selectedTask.description}</p>
           </div>  
           { !this.state.alreadyCompleted && (
-            <button className="taskDetail__completed" onClick={this.completeTask}>
+            <BottomButton onClick={this.completeTask}>
               Mark As Completed
-            </button>
+            </BottomButton>
           )}
         </div>
       )

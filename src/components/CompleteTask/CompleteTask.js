@@ -1,6 +1,7 @@
 import React from 'react'
 import './CompleteTask.css'
 import { Redirect } from 'react-router-dom'
+import BottomButton from '../BottomButton/BottomButton'
 
 import Queries from '../../API/queries'
 import Utils from '../../utils/utils'
@@ -47,7 +48,7 @@ class CompleteTask extends React.Component {
           <h2>Complete {Utils.capitalize(task.habit_name)}</h2>
           <p>You have chosen to complete {task.title} for your {task.habit_name} task today.</p>
           <p>Please be sure you have completed all of the requirements, and then click the Submit button below.</p>
-          <button onClick={this.submitCompletion}>Submit</button>
+          <BottomButton onClick={this.submitCompletion}>Submit</BottomButton>
         </div>
       )
     } else {
