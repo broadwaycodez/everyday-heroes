@@ -15,7 +15,7 @@ class Login extends React.Component {
 
   signIn = async () => {
     try {
-      const signInData = await Auth.signIn(this.state.email.toLowerCase(), this.state.password)
+      const signInData = await Auth.signIn(this.state.email, this.state.password)
       const {auth_token, errors} = signInData
       if (errors) {
         return this.setState({errors})

@@ -27,7 +27,7 @@ class Register extends React.Component {
     const newUser = {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
-      email: this.state.email.toLowerCase(),
+      email: this.state.email,
       screen_name: this.state.screen_name,
       password: this.state.password,
       password_confirmation: this.state.password_confirmation,
