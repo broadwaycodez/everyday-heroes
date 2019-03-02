@@ -1,6 +1,7 @@
 import React from 'react'
 import './Header.css'
 import { Link } from 'react-router-dom'
+import MenuButton from '../MenuButton/MenuButton'
 
 class Header extends React.Component {
   constructor() {
@@ -31,6 +32,7 @@ class Header extends React.Component {
 
   render () {
     const {currentUser} = this.props
+    const menuIsVisible = this.state.menuIsVisible
     const button = (currentUser ? 
       <button id="logout-btn" className="header__logout" onClick={this.handleLogoutClick}>Log Out</button> :
       <button id="login-btn" className="header__logout" onClick={this.handleLogoutClick}>Register/Sign In</button>
@@ -39,15 +41,9 @@ class Header extends React.Component {
       <div className="Header">
         <div className="header__top-line">
           <h1 className="header__logo">Everyday Heroes</h1>
-          <div className="header__menu-button">
-            {
-              this.state.menuIsVisible ? 
-              <i className="fas fa-times fa-2x" onClick={this.toggleMenuVisible}></i> : 
-              <i className="fas fa-bars fa-2x" onClick={this.toggleMenuVisible}></i>
-            }
-          </div>
+          <MenuButton visible={menuIsVisible} toggle={this.toggleMenuVisible} />
         </div>
-        <nav className={`header__nav ${this.state.menuIsVisible ? 'header__nav--visible' : ''}`}>
+        <nav className={`header__nav ${menuIsVisible ? 'header__nav--visible' : ''}`}>
           <ul className="header__nav-list">
             <li className="header__nav-item" onClick={this.toggleMenuVisible}><Link to="/progress">Progress</Link></li>
             <li className="header__nav-item" onClick={this.toggleMenuVisible}><Link to="/today">Today</Link></li>

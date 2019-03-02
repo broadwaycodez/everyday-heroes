@@ -1,5 +1,6 @@
 .TaskDetail {
   animation: fade-in .3s linear;
+  position: relative;
 }
 
 .taskDetail__segmented {
@@ -15,12 +16,10 @@
   color: black !important;
 }
 
-.taskDetail__heading {
-  text-align: left;
-}
-
 .taskDetail__sub-heading {
   font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
   margin: 0;
 }
 

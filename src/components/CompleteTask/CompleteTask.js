@@ -5,6 +5,7 @@ import BottomButton from '../BottomButton/BottomButton'
 
 import Queries from '../../API/queries'
 import Utils from '../../utils/utils'
+import BackButton from '../BackButton/BackButton';
 
 class CompleteTask extends React.Component {
   constructor(props) {
@@ -42,11 +43,13 @@ class CompleteTask extends React.Component {
       return <Redirect to="/today" />
     }
     const task = this.state.task
+    const habitId = this.props.habitId
     if (task) {
       return (
-        <div className="CompleteTast">
-          <h2>Complete {Utils.capitalize(task.habit_name)}</h2>
-          <p>You have chosen to complete {task.title} for your {task.habit_name} task today.</p>
+        <div className="CompleteTask">
+          <BackButton to={`/tasks/${habitId}`} />
+          <h2 className="main__page-title">Complete {Utils.capitalize(task.habit_name)}</h2>
+          <p>You have chosen to complete <strong>{task.title}</strong> for your <strong>{Utils.capitalize(task.habit_name)}</strong> task today.</p>
           <p>Please be sure you have completed all of the requirements, and then click the Submit button below.</p>
           <BottomButton onClick={this.submitCompletion}>Submit</BottomButton>
         </div>

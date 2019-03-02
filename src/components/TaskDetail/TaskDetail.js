@@ -1,9 +1,9 @@
 import React from 'react'
 import './TaskDetail.css'
-import { Link } from 'react-router-dom'
 import { SegmentedControl } from 'segmented-control'
 import { Redirect } from 'react-router-dom'
 import BottomButton from '../BottomButton/BottomButton'
+import BackButton from '../BackButton/BackButton'
 
 import Queries from '../../API/queries'
 import Utils from '../../utils/utils'
@@ -40,7 +40,6 @@ class TaskDetail extends React.Component {
   }
 
   handleSelectChange = async (newValue) => {
-    // await this.setState({transitioning: true})
     setTimeout(() => {
       this.setState({ 
         taskIndex: newValue,
@@ -60,12 +59,10 @@ class TaskDetail extends React.Component {
 
   render() {
     const habit = this.state.habit
-    // const contentClass = 'taskDetail__content' + 
-    //   (this.state.transitioning ? ' taskDetail__content--leaving' : '') +
-    //   (habit ? '' : ' taskDetail__content--static')
     if (this.state.complete) {
       const taskId = this.state.tasks[this.state.taskIndex].id
-      return <Redirect to={`/tasks/${taskId}/complete`} />
+      const habitId = this.props.habitId
+      return <Redirect to={`/tasks/${habitId}/complete/${taskId}`} />
     }
     if (habit) {
       const selectedTask = this.state.tasks[this.state.taskIndex]
@@ -77,8 +74,8 @@ class TaskDetail extends React.Component {
       })
       return (
         <div className="TaskDetail">
-          {/* <div><Link to="/today">Back</Link></div> */}
-          <h2 className="main__page-title taskDetail__heading">{Utils.capitalize(habit.name)}</h2>
+          <BackButton to="/today" />
+          <h2 className="main__page-title">{Utils.capitalize(habit.name)}</h2>
           {this.state.alreadyCompleted ? (
             <h3 className="taskDetail__sub-heading">You have already completed {Utils.capitalize(habit.name)} today</h3>
           ) : (
