@@ -20,16 +20,17 @@
   height: 3em;
   overflow: hidden;
   transition: all .3s ease-out;
+  animation: open-down .3s ease-out;
 }
 
 .messageRow--message {
   background-color: green;
-  background: linear-gradient(0.25turn, green, rgb(0, 70, 0));
+  background: linear-gradient(0.15turn, green, rgb(0, 70, 0));
 }
 
 .messageRow--error {
   background-color: red; 
-  background: linear-gradient(0.25turn, rgb(255, 0, 0), rgb(170, 40, 1));
+  background: linear-gradient(0.15turn, rgb(255, 0, 0), rgb(170, 40, 1));
 }
 
 .messageRow__dismiss {
@@ -46,4 +47,13 @@
 .messageRow--dismissing {
   height: 0;
   padding: 0;
+}
+
+@keyframes open-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: 3em;
+  }
 }
