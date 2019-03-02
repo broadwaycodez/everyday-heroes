@@ -12,7 +12,6 @@ class CompleteTask extends React.Component {
     super(props)
     this.state = {
       task: null,
-      errors: null,
       completed: null,
     }
   }
@@ -21,7 +20,7 @@ class CompleteTask extends React.Component {
     const data = await Queries.getTask(this.props.taskId)
     const {task, errors} = data
     if (errors) {
-      return this.setState({errors})
+      return this.props.displayMessages(null, errors)
     }
     this.setState({task})
   }
@@ -29,8 +28,9 @@ class CompleteTask extends React.Component {
   submitCompletion = async () => {
     const { completed_assignment, errors } = await Queries.completeTask(this.state.task.id)
     if (errors) {
-      return this.setState({errors})
+      return this.props.displayMessages(null, errors)
     }
+    this.props.displayMessages([`You have completed ${Utils.capitalize(this.state.task.habit_name)} for today!`], null)
     this.setState({completed: completed_assignment})
   }
 

@@ -16,8 +16,8 @@ class App extends Component {
       currentUser: null,
       authVisible: false,
       authLeaving: false,
-      errors: ["Something Went Wrong"],
-      messages: ["Welcome to Everyday Heroes. You're gonna love it here!"],
+      errors: [],
+      messages: [],
     }
   }
 
@@ -35,6 +35,36 @@ class App extends Component {
         authLeaving: false,
       })
     }, 600)
+  }
+
+  displayMessages = (messages, errors) => {
+    this.setState(prev => {
+      if (messages) {
+        messages.forEach(message => {
+          prev.messages.push(message)
+        })
+      } 
+      if (errors) {
+        errors.forEach(error => {
+          prev.errors.push(error)
+        })
+      }
+      return prev
+    })
+  }
+
+  dismissMessage = (message, error) => {
+    this.setState(prev => {
+      if (message) {
+        const index = prev.messages.indexOf(message)
+        prev.messages.splice(index, 1)
+      }
+      if (error) {
+        const index = prev.errors.indexOf(error)
+        prev.errors.splice(index, 1)
+      }
+      return prev
+    })
   }
 
   setCurrentUser = async (auth_token, setLocal = true) => {
@@ -78,10 +108,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <UserMessages errors={this.state.errors} messages={this.state.messages} />
+        <UserMessages errors={this.state.errors} messages={this.state.messages} dismissMessage={this.dismissMessage} />
         <Header currentUser={this.state.currentUser} logoutUser={this.logoutUser} requestAuth={this.displayAuth} />
-        { this.state.authVisible && <Authorization currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} dismiss={this.dismissAuth} leaving={this.state.authLeaving} /> }
-        <Main currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} />
+        { this.state.authVisible && <Authorization currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} dismiss={this.dismissAuth} leaving={this.state.authLeaving} displayMessages={this.displayMessages} /> }
+        <Main currentUser={this.state.currentUser} displayMessages={this.displayMessages} />
       </div>
     )
   }

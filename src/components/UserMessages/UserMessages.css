@@ -9,24 +9,27 @@
 }
 
 .MessageRow {
-  padding: 5px 10px;
+  padding: .3em .8em;
   position: relative;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  /* align-items: flex-start; */
   border-radius: 0 0 8px 8px;
   box-shadow: 1px 2px 0 rgba(0,0,0,.5);
-  font-size: .8rem;
-  transition: all .3s;
+  font-size: .9rem;
+  height: 3em;
+  overflow: hidden;
+  transition: all .3s ease-out;
 }
 
 .messageRow--message {
   background-color: green;
+  background: linear-gradient(0.25turn, green, rgb(0, 70, 0));
 }
 
 .messageRow--error {
   background-color: red; 
+  background: linear-gradient(0.25turn, rgb(255, 0, 0), rgb(170, 40, 1));
 }
 
 .messageRow__dismiss {
@@ -38,4 +41,9 @@
   align-items: center;
   text-shadow: 1px 2px 0 rgba(0,0,0,.5);
   border-left: 1px solid rgba(255, 255, 255, .4);
+}
+
+.messageRow--dismissing {
+  height: 0;
+  padding: 0;
 }

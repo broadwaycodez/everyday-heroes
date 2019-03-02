@@ -7,7 +7,7 @@ const UserMessages = ({errors, messages, dismissMessage}) => {
     messages ? 
     messages.map((message, i) => {
       return (
-        <MessageRow key={i} message={message} />
+        <MessageRow key={i} message={message} dismiss={dismissMessage} />
       )
     }) :
     null
@@ -16,7 +16,7 @@ const UserMessages = ({errors, messages, dismissMessage}) => {
     errors ? 
     errors.map((error, i) => {
       return (
-        <MessageRow key={i} error={error} />
+        <MessageRow key={i} error={error} dismiss={dismissMessage} />
       )
     }) :
     null

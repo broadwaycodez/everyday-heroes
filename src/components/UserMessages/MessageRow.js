@@ -1,14 +1,46 @@
 import React from 'react'
 import './UserMessages.css'
 
-const MessageRow = ({message, error, dismiss}) => {
-  const rowClassName = "MessageRow" + (error ? " messageRow--error" : " messageRow--message")
-  return (
-    <div className={rowClassName}>
-      <div>{message || error}</div>
-      <div className="messageRow__dismiss"><i className="fas fa-times"></i></div>
-    </div>
-  )
+class MessageRow extends React.Component {
+  constructor() {
+    super()
+    this.timeout = null
+    this.state = {
+      dismissing: false
+    }
+  }
+
+  dismiss = async () => {
+    await this.setState({dismissing: true})
+    setTimeout(() => {
+      this.props.dismiss(this.props.message, this.props.error)
+    }, 300)
+  }
+
+  componentDidMount() {
+    this.timeout = setTimeout(() => {
+      this.dismiss()
+    }, 5000)
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout)
+  }
+
+  render() {
+    const {message, error} = this.props
+    const rowClassName = (
+      "MessageRow" + 
+      (error ? " messageRow--error" : " messageRow--message") +
+      (this.state.dismissing ? " messageRow--dismissing" : "")
+    )
+    return (
+      <div className={rowClassName}>
+        <div>{message || error}</div>
+        <div className="messageRow__dismiss" onClick={this.dismiss}><i className="fas fa-times"></i></div>
+      </div>
+    )
+  }
 }
 
 export default MessageRow

@@ -8,7 +8,6 @@ class Today extends React.Component {
     super(props)
     this.state = {
       tasks: null,
-      errors: null,
     }
   }
 
@@ -16,7 +15,7 @@ class Today extends React.Component {
     const data = await Queries.getToday()
     const {today_tasks, errors} = data
     if (errors) {
-      return this.setState({errors})
+      return this.props.displayMessages(null, errors)
     }
     this.setState({tasks: today_tasks})
   }
