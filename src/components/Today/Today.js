@@ -1,7 +1,6 @@
 import React from 'react'
 import './Today.css'
 import Queries from '../../API/queries'
-
 import TaskList from '../TaskList/TaskList'
 
 class Today extends React.Component {
@@ -27,7 +26,6 @@ class Today extends React.Component {
   }
 
   render() {
-
     return (
       <div className="Today">
         <h2 className="main__page-title">Today</h2>

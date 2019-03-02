@@ -20,16 +20,13 @@ class Authorization extends React.Component {
   }
 
   render() {
-    const activeScreen = this.state.activeScreen === 'register' ? <Register {...this.props} /> : <Login {...this.props} />
-    const buttonText = this.state.activeScreen === 'register' ? 'Already a member?' : "Don't have an account?"
+    const props = {...this.props, switchScreen : this.switchScreen}
+    const activeScreen = this.state.activeScreen === 'register' ? <Register {...props} /> : <Login {...props} />
     const leaving = this.props.leaving
     return (
       <div className={'Authorization-wrapper' + (leaving ? ' Authorization-wrapper--leaving' : '')}>
         <div className="Authorization">
           { activeScreen }
-          <div className="authorization__switch">
-            <button className="authorization__switch-btn" onClick={this.switchScreen}>{buttonText}</button>
-          </div>
         </div>
       </div>
     )

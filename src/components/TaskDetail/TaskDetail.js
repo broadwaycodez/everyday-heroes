@@ -16,7 +16,8 @@ class TaskDetail extends React.Component {
       taskIndex: 0,
       errors: null,
       complete: false,
-      alreadyCompleted: false
+      alreadyCompleted: false,
+      transitioning: false,
     }
   }
 
@@ -37,8 +38,14 @@ class TaskDetail extends React.Component {
     }
   }
 
-  handleSelectChange = (newValue) => {
-    this.setState({ taskIndex: newValue })
+  handleSelectChange = async (newValue) => {
+    // await this.setState({transitioning: true})
+    setTimeout(() => {
+      this.setState({ 
+        taskIndex: newValue,
+        transitioning: false,
+       })
+    }, 400)
   }
 
   completeTask = () => {
@@ -51,11 +58,14 @@ class TaskDetail extends React.Component {
   }
 
   render() {
+    const habit = this.state.habit
+    // const contentClass = 'taskDetail__content' + 
+    //   (this.state.transitioning ? ' taskDetail__content--leaving' : '') +
+    //   (habit ? '' : ' taskDetail__content--static')
     if (this.state.complete) {
       const taskId = this.state.tasks[this.state.taskIndex].id
       return <Redirect to={`/tasks/${taskId}/complete`} />
     }
-    const habit = this.state.habit
     if (habit) {
       const selectedTask = this.state.tasks[this.state.taskIndex]
       const taskOptions = this.state.tasks.map((task, i) => {
@@ -66,12 +76,12 @@ class TaskDetail extends React.Component {
       })
       return (
         <div className="TaskDetail">
-          <div><Link to="/today">Back</Link></div>
-          <h2>{Utils.capitalize(habit.name)}</h2>
+          {/* <div><Link to="/today">Back</Link></div> */}
+          <h2 className="main__page-title taskDetail__heading">{Utils.capitalize(habit.name)}</h2>
           {this.state.alreadyCompleted ? (
-            <h3>You have already completed {Utils.capitalize(habit.name)} today</h3>
+            <h3 className="taskDetail__sub-heading">You have already completed {Utils.capitalize(habit.name)} today</h3>
           ) : (
-            <h3>Select one of the following essential elements to complete today:</h3>
+            <h3 className="taskDetail__sub-heading">Select one of the following essential elements to complete today:</h3>
           )}
           <SegmentedControl
             className="taskDetail__segmented" 
@@ -79,10 +89,9 @@ class TaskDetail extends React.Component {
             options={taskOptions} 
             setValue={newValue => this.handleSelectChange(newValue)} 
           />
-          <div key={selectedTask.id}>
-            <p>{selectedTask.element}</p>
-            <p>{selectedTask.title}</p>
-            <p>{selectedTask.description}</p>
+          <div className="taskDetail__content" key={selectedTask.id}>
+            <p className="taskDetail__p">{selectedTask.title}</p>
+            <p className="taskDetail__p">{selectedTask.description}</p>
           </div>  
           { !this.state.alreadyCompleted && (
             <button className="taskDetail__completed" onClick={this.completeTask}>

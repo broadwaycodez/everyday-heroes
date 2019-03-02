@@ -6,6 +6,7 @@ import jwt_decode from 'jwt-decode'
 import Header from '../Header/Header'
 import Main from '../Main/Main'
 import Authorization from '../Authorization/Authorization'
+import Queries from '../../API/queries'
 
 class App extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class App extends Component {
       currentUser: null,
       authVisible: false,
       authLeaving: false,
+      errors: null,
     }
   }
 
@@ -39,9 +41,12 @@ class App extends Component {
     }
     setAuthToken(auth_token)
     const decoded = jwt_decode(auth_token)
-    console.log(decoded)
+    const {user, errors} = await Queries.getUser(decoded.user_id)
+    if (errors) {
+      return this.setState({errors})
+    }
     await this.setState({
-      currentUser: decoded.user_id,
+      currentUser: user,
     })
     this.dismissAuth()
   }

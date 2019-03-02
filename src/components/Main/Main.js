@@ -10,6 +10,7 @@ import CompleteTask from '../CompleteTask/CompleteTask'
 const Main = ({currentUser, setCurrentUser}) => {
   return (
     <div className="Main">
+      <h2 className="main__screen-name">{currentUser && currentUser.screen_name}</h2>
       <Switch>
         <Route path="/" exact render={ props => {
           if (currentUser) {
@@ -20,7 +21,7 @@ const Main = ({currentUser, setCurrentUser}) => {
         }}/>
         <Route path="/today" render={ () => {
           if (currentUser) {
-            return <Today />
+            return <Today currentUser={currentUser} />
           } else {
             return <Redirect to="/" />
           }

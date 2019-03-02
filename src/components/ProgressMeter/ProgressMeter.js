@@ -10,8 +10,8 @@ const ProgressMeter = ({progress}) => {
       const percent = Utils.getPercent(habit.earned, habit.required)
       return (
         <div key={habit.habit_id} className="progressMeter__row">
-          <h4>{Utils.capitalize(habit.habit)}</h4>
-          <p>{habit.earned} points of {habit.required} ({percent}%)</p>
+          <h4 className="progressMeter__heading">{Utils.capitalize(habit.habit)}</h4>
+          <p className="progressMeter__content">{habit.earned} points of {habit.required} ({percent}%)</p>
         </div>
       )
     })

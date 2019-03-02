@@ -1,0 +1,6 @@
+.TaskList {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  animation: fade-in .3s linear;
+}

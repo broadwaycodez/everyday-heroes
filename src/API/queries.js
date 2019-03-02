@@ -1,6 +1,14 @@
 import axios from 'axios'
 
 const Queries = {
+  async getUser(userId) {
+    try {
+      const res = await axios.get(`/users/${userId}`)
+      return res.data
+    } catch (e) {
+      return {errors: [e.message]}
+    }
+  },
   async getToday() {
     try {
       const res = await axios.get('/today')

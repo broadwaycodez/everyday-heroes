@@ -42,7 +42,7 @@
 .Login, .Register {
   width: 100%;
   max-width: 500px;
-
+  animation: fade-in .5s linear;
 }
 
 .authorization__form {
@@ -69,6 +69,10 @@
 
 .authorization__switch {
   margin-top: 10px;
+  transition: all .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .authorization__switch-btn, .authorization__submit {

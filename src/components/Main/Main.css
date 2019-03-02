@@ -1,8 +1,21 @@
 .Main {
   padding: 10px;
+  animation: fade-in .3s linear;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.main__screen-name {
+  margin: 0;
+  text-shadow: 2px 4px 0 rgba(0,0,0,.5);
+  text-align: center;
+  font-size: 1.7rem;
+  letter-spacing: .1em;
 }
 
 .main__page-title {
   margin-top: 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+  text-shadow: 2px 4px 0 rgba(0,0,0,.5);
 }

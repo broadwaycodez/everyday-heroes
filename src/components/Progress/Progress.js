@@ -14,7 +14,7 @@ class Progress extends React.Component {
   }
 
   getProgressData = async () => {
-    const {points, errors} = await Queries.getProgress(this.props.currentUser)
+    const {points, errors} = await Queries.getProgress(this.props.currentUser.id)
     if (errors) {
       return this.setState({errors})
     }

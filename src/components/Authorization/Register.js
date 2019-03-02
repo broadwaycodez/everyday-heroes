@@ -99,6 +99,9 @@ class Register extends React.Component {
           </div>
           <button className="authorization__submit">Sign Up!</button>
         </form>
+        <div className="authorization__switch">
+          <button className="authorization__switch-btn" onClick={this.props.switchScreen}>Already a member?</button>
+        </div>
       </div>
     )
   }

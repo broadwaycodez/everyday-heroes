@@ -1,7 +1,26 @@
 .DailyTask {
   margin: 10px;
+  text-align: center;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 8px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, .2);
+  padding: 5px;
+  animation: fade-in .3s linear;
 }
 
-.DailyTask h3, .DailyTask h4 {
+.dailyTask__title {
   margin: 0;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.dailyTask__complete {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.dailyTask__complete a {
+  text-decoration: none;
 }
