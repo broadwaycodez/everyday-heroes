@@ -69,7 +69,7 @@ class App extends Component {
 
   setCurrentUser = async (auth_token, setLocal = true) => {
     if (setLocal) {
-      localStorage.setItem("brianToken", auth_token)
+      localStorage.setItem("edhAuthToken", auth_token)
     }
     setAuthToken(auth_token)
     const decoded = jwt_decode(auth_token)
@@ -85,8 +85,8 @@ class App extends Component {
   }
 
   checkForAuthToken = () => {
-    if (localStorage.brianToken) {
-      const auth_token = localStorage.brianToken
+    if (localStorage.edhAuthToken) {
+      const auth_token = localStorage.edhAuthToken
       this.setCurrentUser(auth_token, false)
     } else {
       this.setState({authVisible: true})
@@ -94,7 +94,7 @@ class App extends Component {
   }
   
   logoutUser = () => {
-    localStorage.removeItem('brianToken')
+    localStorage.removeItem('edhAuthToken')
     setAuthToken(false)
     this.setState({
       currentUser: null,

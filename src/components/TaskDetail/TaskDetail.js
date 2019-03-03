@@ -90,7 +90,7 @@ class TaskDetail extends React.Component {
           />
           <div className="taskDetail__content" key={selectedTask.id}>
             <p className="taskDetail__title">{selectedTask.title}</p>
-            <p className="taskDetail__p">{selectedTask.description}</p>
+            <div className="taskDetail__description" dangerouslySetInnerHTML={ {__html: selectedTask.description} } />
           </div>  
           { !this.state.alreadyCompleted && (
             <BottomButton onClick={this.completeTask}>
