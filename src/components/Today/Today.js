@@ -2,22 +2,24 @@ import React from 'react'
 import './Today.css'
 import Queries from '../../API/queries'
 import TaskList from '../TaskList/TaskList'
+import ChallengesList from '../ChallengesList/ChallengesList'
 
 class Today extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       tasks: null,
+      challenges: null,
     }
   }
 
   getToday = async () => {
     const data = await Queries.getToday()
-    const {today_tasks, errors} = data
+    const {tasks, challenges, errors} = data
     if (errors) {
       return this.props.displayMessages(null, errors)
     }
-    this.setState({tasks: today_tasks})
+    this.setState({tasks, challenges})
   }
 
   componentDidMount() {
@@ -28,8 +30,8 @@ class Today extends React.Component {
   render() {
     return (
       <div className="Today">
-        <h2 className="main__page-title">Your Daily Heroic Habits</h2>
         <TaskList tasks={this.state.tasks} />
+        <ChallengesList challenges={this.state.challenges} />
       </div>
     )
   }

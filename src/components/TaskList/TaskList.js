@@ -9,13 +9,17 @@ const TaskList = ({tasks}) => {
     tasks.map(task => {
       return <DailyTask key={task.habit_id} task={task} />
     }) :
-    <h3>Loading...</h3>
+    []
   )
-  return (
+  return tasks ? (
     <div className="TaskList">
-      {dailyTasks}     
+      <h2 className="main__page-title">Your Daily Heroic Habits</h2>
+      <div className="taskList__wrapper">
+        {dailyTasks}     
+      </div>
     </div>
-  )
+  ) :
+  null
 }
 
 export default TaskList
