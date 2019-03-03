@@ -28,7 +28,7 @@ class Today extends React.Component {
   render() {
     return (
       <div className="Today">
-        <h2 className="main__page-title">Today</h2>
+        <h2 className="main__page-title">Your Daily Heroic Habits</h2>
         <TaskList tasks={this.state.tasks} />
       </div>
     )
