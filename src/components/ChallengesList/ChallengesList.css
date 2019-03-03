@@ -1,3 +1,7 @@
+.ChallengesList {
+  width: 100%;
+  margin-bottom: 15px;
+}
 .challengesList__wrapper {
   display: flex;
   flex-flow: row wrap;

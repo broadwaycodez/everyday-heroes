@@ -10,7 +10,7 @@ const ChallengesList = ({challenges}) => {
     }) :
     []
   )
-  return challenges ? (
+  return challenges && challenges.length > 0 ? (
     <div className="ChallengesList">
       <h2 className="main__page-title">Your Challenges</h2>
       <div className="challengesList__wrapper">

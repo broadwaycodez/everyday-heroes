@@ -6,6 +6,7 @@ import Today from '../Today/Today'
 import Progress from '../Progress/Progress'
 import TaskDetail from '../TaskDetail/TaskDetail'
 import CompleteTask from '../CompleteTask/CompleteTask'
+import ChallengeDetail from '../ChallengeDetail/ChallengeDetail'
 
 const Main = ({currentUser, displayMessages}) => {
   return (
@@ -39,6 +40,13 @@ const Main = ({currentUser, displayMessages}) => {
           if (currentUser) {
             const habitId = props.match.params.habitId
             return <TaskDetail habitId={habitId} displayMessages={displayMessages} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route path="/challenges/:challengeId" render={ props => {
+          if (currentUser) {
+            return <ChallengeDetail challengeId={props.match.params.challengeId} displayMessages={displayMessages} />
           } else {
             return <Redirect to="/" />
           }

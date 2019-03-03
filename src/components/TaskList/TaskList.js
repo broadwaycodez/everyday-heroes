@@ -11,7 +11,7 @@ const TaskList = ({tasks}) => {
     }) :
     []
   )
-  return tasks ? (
+  return tasks && tasks.length > 0 ? (
     <div className="TaskList">
       <h2 className="main__page-title">Your Daily Heroic Habits</h2>
       <div className="taskList__wrapper">

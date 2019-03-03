@@ -49,6 +49,14 @@ const Queries = {
       return {errors: [e.message]}
     }
   },
+  async getChallenge(challengeId) {
+    try {
+      const res = await axios.get(`/challenges/${challengeId}`)
+      return res.data
+    } catch (e) {
+      return {errors: [e.message]}
+    }
+  },
   async getProgress(userId) {
     try {
       const res = await axios.get(`/users/${userId}/progress`)
