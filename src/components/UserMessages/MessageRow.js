@@ -18,9 +18,10 @@ class MessageRow extends React.Component {
   }
 
   componentDidMount() {
+    const time = this.props.error ? 5000 : 3000
     this.timeout = setTimeout(() => {
       this.dismiss()
-    }, 5000)
+    }, time)
   }
 
   componentWillUnmount() {

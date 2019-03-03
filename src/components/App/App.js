@@ -81,6 +81,7 @@ class App extends Component {
       currentUser: user,
     })
     this.dismissAuth()
+    this.displayMessages([`Welcome ${this.state.currentUser.screen_name}`], null)
   }
 
   checkForAuthToken = () => {
@@ -99,6 +100,7 @@ class App extends Component {
       currentUser: null,
       authVisible: true,
     })
+    this.displayMessages(['You have been logged out.'], null)
   }
 
   componentDidMount() {
