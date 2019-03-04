@@ -26,3 +26,24 @@
 .dailyTask__complete a {
   text-decoration: none;
 }
+
+@media only screen and (min-width: 750px) {
+  .DailyTask {
+    width: 7rem;
+    height: 7rem;
+    transition: all .3s;
+  }
+  .DailyTask:hover {
+    transform: scale(1.05, 1.05);
+    box-shadow: 0 0 50px 4px rgba(0, 0, 0, .2);
+  }
+  .dailyTask__complete {
+    transition: all .3s;
+  }
+  .dailyTask__complete:hover {
+    transform: scale(1.1, 1.1);
+  }
+  .dailyTask__title {
+    font-size: 1.2rem;
+  }
+}

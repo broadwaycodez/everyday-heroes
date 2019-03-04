@@ -49,13 +49,11 @@ class Login extends React.Component {
         <form className="authorization__form" onSubmit={this.onFormSubmit}>
           <div className="authorization__form-row">
             <label htmlFor="email">Email</label>
-            <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
-            {errors.email && <div className="authorization__error-message">{errors.email}</div>}
+            <input type="text" name="email" value={this.state.email} onChange={this.handleChange} placeholder={errors.email} />
           </div>
           <div className="authorization__form-row">
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-            {errors.password && <div className="authorization__error-message">{errors.password}</div>}
+            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder={errors.password} />
           </div>
           <button className="authorization__submit">Sign in!</button>
         </form>

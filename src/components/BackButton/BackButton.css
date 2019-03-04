@@ -14,3 +14,18 @@
   text-decoration: none;
   color: white;
 }
+
+@media only screen and (min-width: 750px) {
+  .BackButton {
+    cursor: pointer;
+    transition: text-shadow .3s;
+  }
+  .BackButton:hover {
+    text-shadow: 3px 5px 4px rgba(0,0,0,.5);
+  }
+  .BackButton:active {
+    transition: all .2s;
+    transform: translate(1px, 1px);
+    text-shadow: 2px 4px 3px rgba(0,0,0,.5);
+  }
+}

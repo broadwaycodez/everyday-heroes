@@ -82,12 +82,14 @@ class TaskDetail extends React.Component {
           ) : (
             <h3 className="taskDetail__sub-heading">Select one of the following essential elements to complete today:</h3>
           )}
-          <SegmentedControl
-            className="taskDetail__segmented" 
-            name="elementSelector" 
-            options={taskOptions} 
-            setValue={newValue => this.handleSelectChange(newValue)} 
-          />
+          <div className="taskDetail__segmented-wrapper">
+            <SegmentedControl
+              className="taskDetail__segmented" 
+              name="elementSelector" 
+              options={taskOptions} 
+              setValue={newValue => this.handleSelectChange(newValue)} 
+            />
+          </div>
           <div className="taskDetail__content" key={selectedTask.id}>
             <p className="taskDetail__title">{selectedTask.title}</p>
             <div className="taskDetail__description" dangerouslySetInnerHTML={ {__html: selectedTask.description} } />

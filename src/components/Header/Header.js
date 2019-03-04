@@ -33,9 +33,9 @@ class Header extends React.Component {
   render () {
     const {currentUser} = this.props
     const menuIsVisible = this.state.menuIsVisible
-    const button = (currentUser ? 
-      <button id="logout-btn" className="header__logout" onClick={this.handleLogoutClick}>Log Out</button> :
-      <button id="login-btn" className="header__logout" onClick={this.handleLogoutClick}>Register/Sign In</button>
+    const logout = (currentUser ? 
+      <li id="logout-btn" className="header__nav-item" onClick={this.handleLogoutClick}>Log Out</li> :
+      <li id="login-btn" className="header__nav-item" onClick={this.handleLogoutClick}>Register/Sign In</li>
     )
     return (
       <div className="Header-wrapper">
@@ -48,8 +48,8 @@ class Header extends React.Component {
             <ul className="header__nav-list">
               <li className="header__nav-item" onClick={this.toggleMenuVisible}><Link to="/progress">Progress</Link></li>
               <li className="header__nav-item" onClick={this.toggleMenuVisible}><Link to="/today">Today</Link></li>
+              {logout}
             </ul>
-            {button}
           </nav>
         </div>
       </div>
