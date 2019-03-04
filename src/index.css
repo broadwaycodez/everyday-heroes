@@ -8,9 +8,8 @@ html, body {
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 2.8rem;
-  overflow: scroll;
   background-color: rgba(157, 4, 4, 1);
   background-image: radial-gradient(circle at 50% 50%, rgba(248, 222, 6, 1), rgba(157, 4, 4, 1));
   background-attachment: fixed;
