@@ -4,11 +4,11 @@ const Validate = {
     const minimumPswdChars = 8
     for (let key in user) {
       if (!user[key]) {
-        errors[key] = `${key} is required`
+        errors[key] = `${formNames[key]} is required`
       }
       if (key === 'password') {
         if (user[key].length < minimumPswdChars ) {
-          errors[key] = `${key} must be at least ${minimumPswdChars} characters long.`
+          errors[key] = `${formNames[key]} must be at least ${minimumPswdChars} characters long.`
         }
       }
     }
@@ -33,6 +33,15 @@ const Validate = {
 const sendResponse = errors => {
   const isValid = Object.keys(errors).length === 0
   return {isValid, errors}
+}
+
+const formNames = {
+  email: 'Email',
+  first_name: "First Name",
+  last_name: "Last Name",
+  screen_name: "Screen Name",
+  password: "Password",
+  password_confirmation: "Password Confirmation"
 }
 
 export default Validate
