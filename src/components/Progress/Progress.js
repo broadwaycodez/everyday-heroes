@@ -1,26 +1,34 @@
 import React from 'react'
 import './Progress.css'
 import Queries from '../../API/queries'
+import { Redirect } from 'react-router-dom'
 
-import ProgressMeter from '../ProgressMeter/ProgressMeter'
+import PointsMeter from '../PointsMeter/PointsMeter'
+import ProgressBar from '../ProgressBar/ProgressBar'
+import BottomButton from '../BottomButton/BottomButton'
 
 class Progress extends React.Component {
   constructor() {
     super()
     this.state = {
-      progress: null,
+      points: null,
+      challenges: null,
       level_num: null,
       errors: null,
+      redirect: false
     }
   }
 
+  redirectToToday = () => {
+    this.setState({redirect: true})
+  }
+
   getProgressData = async () => {
-    const {points, level_num, errors} = await Queries.getProgress(this.props.currentUser.id)
+    const {points, challenges, level_num, errors} = await Queries.getProgress(this.props.currentUser.id)
     if (errors) {
       return this.setState({errors})
     }
-    const progress = points
-    this.setState({progress, level_num})
+    this.setState({points, challenges, level_num})
   }
 
   componentDidMount() {
@@ -29,12 +37,18 @@ class Progress extends React.Component {
   }
 
   render() {
-    const progress = this.state.progress
+    if (this.state.redirect) {
+      return <Redirect to="/today" />
+    }
+    const points = this.state.points
+    const challenges = this.state.challenges
     const levelNum = this.state.level_num
     return (
       <div className="Progress">
-      <h2 className="main__page-title">Level {levelNum} Progress</h2>
-      { progress ? <ProgressMeter progress={progress} /> : <div>Loading...</div> }
+        <h2 className="main__page-title">Level {levelNum} Progress</h2>
+        { points ? <PointsMeter points={points} /> : null }
+        { challenges ? <ProgressBar title="Required Challenges" earned={challenges.earned} required={challenges.required} /> : null}
+        <BottomButton onClick={this.redirectToToday}>View Today's Tasks</BottomButton>
       </div>
     )
   }
