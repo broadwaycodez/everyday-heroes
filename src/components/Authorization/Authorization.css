@@ -5,6 +5,7 @@
   right: 0;
   bottom: 0;
   display: flex;
+  overflow: scroll;
   justify-content: center;
   align-items: flex-start;
   z-index: 20;
@@ -22,7 +23,7 @@
   position: relative;
   width: 100%;
   padding: 20px;
-  padding-top: 20vh;
+  /* padding-top: 20vh; */
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
