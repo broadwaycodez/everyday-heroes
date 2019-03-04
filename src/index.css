@@ -67,3 +67,9 @@ h1, h2, h3 {
     padding-top: 100vh;
   }
 }
+
+@media only screen and (min-width: 750px) {
+  body {
+    padding-top: 6rem;
+  }
+}

@@ -1,6 +1,12 @@
 .TaskDetail {
   animation: fade-in .3s linear;
   position: relative;
+  padding-bottom: 3rem;
+}
+
+.taskDetail__segmented-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .taskDetail__segmented {
@@ -10,6 +16,7 @@
 
 .segmented-control {
   border-radius: 8px !important;
+  max-width: 450px !important;
 }
 
 .segmented-control label::after {
@@ -38,4 +45,22 @@
   margin-top: 0;
   text-align: center;
   font-weight: bold;
+}
+
+@media only screen and (min-width: 750px) {
+  .taskDetail__sub-heading {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .taskDetail__title {
+    font-size: 1.5rem;
+  }
+  .taskDetail__content {
+    padding: 20px 30px;
+    border-radius: 10px;
+  }
+
+  .segmented-control label {
+    text-shadow: 2px 4px 4px rgba(0,0,0,.5);
+  }
 }
