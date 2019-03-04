@@ -17,21 +17,36 @@ class CompleteTask extends React.Component {
   }
 
   getTask = async () => {
-    const data = await Queries.getTask(this.props.taskId)
-    const {task, errors} = data
+    const data = (
+      this.props.taskId ?
+      await Queries.getTask(this.props.taskId) :
+      await Queries.getChallenge(this.props.challengeId)
+    )
+    const {errors} = data
     if (errors) {
       return this.props.displayMessages(null, errors)
     }
+    const task = this.props.taskId ? data.task : data.challenge
     this.setState({task})
   }
 
   submitCompletion = async () => {
-    const { completed_assignment, errors } = await Queries.completeTask(this.state.task.id)
+    const data = (
+      this.props.taskId ? 
+      await Queries.completeTask(this.state.task.id) :
+      await Queries.completeChallenge(this.state.task.id)
+    )
+    const { completed, errors } = data
     if (errors) {
       return this.props.displayMessages(null, errors)
     }
-    this.props.displayMessages([`You have completed ${Utils.capitalize(this.state.task.habit_name)} for today!`], null)
-    this.setState({completed: completed_assignment})
+    const message = (
+      this.props.taskId ?
+      `You have completed ${Utils.capitalize(this.state.task.habit_name)} for today!` :
+      `You have completed ${this.state.task.title}`
+    )
+    this.props.displayMessages([message], null)
+    this.setState({completed: completed})
   }
 
   componentDidMount() {
@@ -46,11 +61,16 @@ class CompleteTask extends React.Component {
     const task = this.state.task
     const habitId = this.props.habitId
     if (task) {
+      const back = this.props.taskId ? `/tasks/${habitId}` : `/challenges/${this.props.challengeId}`
       return (
         <div className="CompleteTask">
-          <BackButton to={`/tasks/${habitId}`} />
+          <BackButton to={back} />
           <h2 className="main__page-title">Complete {Utils.capitalize(task.habit_name)}</h2>
-          <p>You have chosen to complete <strong>{task.title}</strong> for your <strong>{Utils.capitalize(task.habit_name)}</strong> task today.</p>
+          {this.props.taskId ? (
+            <p>You have chosen to complete <strong>{task.title}</strong> for your <strong>{Utils.capitalize(task.habit_name)}</strong> task today.</p>
+          ) : (
+            <p>You are about to claim completion of <strong>{task.title}</strong>.</p>
+          )}
           <p>Please be sure you have completed all of the requirements, and then click the Submit button below.</p>
           <BottomButton onClick={this.submitCompletion}>Submit</BottomButton>
         </div>

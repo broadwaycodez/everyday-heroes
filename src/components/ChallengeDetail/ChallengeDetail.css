@@ -23,4 +23,11 @@
 
 .challengeDetail__bonus-heading {
   text-shadow: 1px 2px 0 rgba(0,0,0,.5);
+  margin-bottom: .3em;
+}
+
+.challengeDetail__bonus-row {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.2em;
 }

@@ -44,9 +44,17 @@ const Main = ({currentUser, displayMessages}) => {
             return <Redirect to="/" />
           }
         }} />
-        <Route path="/challenges/:challengeId" render={ props => {
+        <Route path="/challenges/:challengeId" exact render={ props => {
           if (currentUser) {
             return <ChallengeDetail challengeId={props.match.params.challengeId} displayMessages={displayMessages} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route path="/challenges/:challengeId/complete" render={ props => {
+          if (currentUser) {
+            const challengeId = props.match.params.challengeId
+            return <CompleteTask challengeId={challengeId} displayMessages={displayMessages} />
           } else {
             return <Redirect to="/" />
           }

@@ -12,8 +12,12 @@ class ChallengeDetail extends React.Component {
     super(props)
     this.state = {
       challenge: null,
-      complete: false
+      complete: false,
     }
+  }
+
+  completeTask = () => {
+    this.setState({complete: true})
   }
 
   getChallengeInfo = async () => {
@@ -23,10 +27,6 @@ class ChallengeDetail extends React.Component {
       return this.props.displayMessages(null, errors)
     }
     this.setState({challenge})
-  }
-
-  completeTask = () => {
-    // this.setState({ complete: true })
   }
 
   componentDidMount() {
@@ -75,10 +75,13 @@ class ChallengeDetail extends React.Component {
                 {challenge.description}
               </div>
             )}
+            { challenge.completed && <p>You have completed this challenge.</p> }
           </div>
-          <BottomButton onClick={this.completeTask}>
-            Mark As Completed
-          </BottomButton>
+          {!challenge.completed && (
+            <BottomButton onClick={this.completeTask}>
+              Mark As Completed
+            </BottomButton>
+          )}
         </div>
       )
     } else {
