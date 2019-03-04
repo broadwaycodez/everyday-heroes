@@ -1,7 +1,7 @@
 {
   "name": "everyday-heroes",
   "version": "0.1.0",
-  "proxy": "http://localhost:3001",
+  "proxy": "https://everyday-heroes-api.herokuapp.com",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
