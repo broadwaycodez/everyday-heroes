@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const URL = ''
+const URL = 'https://everyday-heroes-api.herokuapp.com'
 
 const Auth = {
   async register(newUser) {
