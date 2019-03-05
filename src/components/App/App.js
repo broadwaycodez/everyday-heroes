@@ -75,13 +75,39 @@ class App extends Component {
     const decoded = jwt_decode(auth_token)
     const {user, errors} = await Queries.getUser(decoded.user_id)
     if (errors) {
-      return this.setState({errors})
+      return this.displayMessages(null, errors)
     }
     await this.setState({
       currentUser: user,
     })
     this.dismissAuth()
     this.displayMessages([`Welcome ${this.state.currentUser.screen_name}`], null)
+  }
+
+  updateCurrentUser = async () => {
+    if (!this.state.currentUser) {
+      return this.checkForAuthToken()
+    }
+    const { user, errors } = await Queries.getUser(this.state.currentUser.id)
+    if (errors) {
+      return this.displayMessages(null, errors)
+    }
+    await this.setState({
+      currentUser: user,
+    })
+  }
+
+  deleteAccount = async () => {
+    if (!window.confirm("Are you sure you want to delete your account? This cannot be undone.")) {
+      return null
+    }
+    const data = await Queries.deleteAccount(this.state.currentUser.id)
+    const {message, errors} = data
+    if (errors) {
+      return this.displayMessages(null, errors)
+    }
+    this.displayMessages([message], null)
+    this.logoutUser()
   }
 
   checkForAuthToken = () => {
@@ -113,7 +139,7 @@ class App extends Component {
         <UserMessages errors={this.state.errors} messages={this.state.messages} dismissMessage={this.dismissMessage} />
         <Header currentUser={this.state.currentUser} logoutUser={this.logoutUser} requestAuth={this.displayAuth} />
         { this.state.authVisible && <Authorization currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} dismiss={this.dismissAuth} leaving={this.state.authLeaving} displayMessages={this.displayMessages} /> }
-        <Main currentUser={this.state.currentUser} displayMessages={this.displayMessages} />
+        <Main currentUser={this.state.currentUser} updateCurrentUser={this.updateCurrentUser} displayMessages={this.displayMessages} deleteAccount={this.deleteAccount} />
       </div>
     )
   }

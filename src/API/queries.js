@@ -74,6 +74,14 @@ const Queries = {
     } catch (e) {
       return {errors: [e.message]}
     }
+  },
+  async deleteAccount(userId) {
+    try {
+      const res = await axios.delete(`/users/${userId}`)
+      return res.data
+    } catch (e) {
+      return {errors: [e.message]}
+    }
   }
 }
 

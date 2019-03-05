@@ -46,8 +46,9 @@ class Header extends React.Component {
           </div>
           <nav className={`header__nav ${menuIsVisible ? 'header__nav--visible' : ''}`}>
             <ul className="header__nav-list">
-              <li className="header__nav-item" onClick={this.toggleMenuVisible}><Link to="/progress">Progress</Link></li>
               <li className="header__nav-item" onClick={this.toggleMenuVisible}><Link to="/today">Today</Link></li>
+              <li className="header__nav-item" onClick={this.toggleMenuVisible}><Link to="/progress">Progress</Link></li>
+              <li className="header__nav-item" onClick={this.toggleMenuVisible}><Link to="/profile">My Profile</Link></li>
               {logout}
             </ul>
           </nav>

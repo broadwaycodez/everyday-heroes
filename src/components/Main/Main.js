@@ -7,8 +7,10 @@ import Progress from '../Progress/Progress'
 import TaskDetail from '../TaskDetail/TaskDetail'
 import CompleteTask from '../CompleteTask/CompleteTask'
 import ChallengeDetail from '../ChallengeDetail/ChallengeDetail'
+import Profile from '../Profile/Profile'
+import EditProfile from '../EditProfile/EditProfile'
 
-const Main = ({currentUser, displayMessages}) => {
+const Main = ({currentUser, displayMessages, updateCurrentUser, deleteAccount}) => {
   return (
     <div className="Main">
       <Switch>
@@ -19,6 +21,20 @@ const Main = ({currentUser, displayMessages}) => {
             return "Please sign in or create an account"
           }
         }}/>
+        <Route path="/profile" exact render={ () => {
+          if (currentUser) {
+            return <Profile currentUser={currentUser} displayMessages={displayMessages} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route path="/profile/edit" render={ () => {
+          if (currentUser) {
+            return <EditProfile currentUser={currentUser} displayMessages={displayMessages} deleteAccount={deleteAccount} updateCurrentUser={updateCurrentUser} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
         <Route path="/today" render={ () => {
           if (currentUser) {
             return <Today currentUser={currentUser} displayMessages={displayMessages} />
