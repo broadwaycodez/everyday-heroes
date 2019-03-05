@@ -82,7 +82,15 @@ const Queries = {
     } catch (e) {
       return {errors: [e.message]}
     }
-  }
+  },
+  async getAnnouncements() {
+    try {
+      const res = await axios.get(`${URL}/announcements`)
+      return res.data
+    } catch (e) {
+      return {errors: [e.message]}
+    }
+  },
 }
 
 export default Queries

@@ -18,6 +18,7 @@ class App extends Component {
       authLeaving: false,
       errors: [],
       messages: [],
+      announcements: [],
     }
   }
 
@@ -82,6 +83,7 @@ class App extends Component {
     })
     this.dismissAuth()
     this.displayMessages([`Welcome ${this.state.currentUser.screen_name}`], null)
+    this.checkForAnnouncements()
   }
 
   updateCurrentUser = async () => {
@@ -108,6 +110,15 @@ class App extends Component {
     }
     this.displayMessages([message], null)
     this.logoutUser()
+  }
+
+  checkForAnnouncements = async () => {
+    const data = await Queries.getAnnouncements()
+    const {announcements, errors} = data
+    if (errors) {
+      return this.displayMessages(null, errors)
+    }
+    this.setState({announcements})
   }
 
   checkForAuthToken = () => {

@@ -1,5 +1,6 @@
 .EditProfile {
   position: relative;
+  animation: fade-in .3s linear;
 }
 
 .editProfile__form {

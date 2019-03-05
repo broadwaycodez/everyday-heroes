@@ -1,3 +1,7 @@
+.Profile {
+  animation: fade-in .3s linear;
+}
+
 .profile__sub-heading {
   text-shadow: 1px 2px 0 rgba(0, 0, 0, .5);
   font-size: 1.2rem;
