@@ -8,6 +8,7 @@ import Main from '../Main/Main'
 import Authorization from '../Authorization/Authorization'
 import Queries from '../../API/queries'
 import UserMessages from '../UserMessages/UserMessages'
+import AnnouncementsContainer from '../AnnouncementsContainer/AnnouncementsContainer'
 
 class App extends Component {
   constructor() {
@@ -121,6 +122,16 @@ class App extends Component {
     this.setState({announcements})
   }
 
+  dismissAnnouncement = announcementId => {
+    this.setState(prev => {
+      const index = prev.announcements.findIndex(announcement => {
+        return announcement.id = announcementId
+      })
+      prev.announcements.splice(index, 1)
+      return prev
+    })
+  }
+
   checkForAuthToken = () => {
     if (localStorage.edhAuthToken) {
       const auth_token = localStorage.edhAuthToken
@@ -149,6 +160,7 @@ class App extends Component {
       <div className="App">
         <UserMessages errors={this.state.errors} messages={this.state.messages} dismissMessage={this.dismissMessage} />
         <Header currentUser={this.state.currentUser} logoutUser={this.logoutUser} requestAuth={this.displayAuth} />
+        {this.state.announcements.length > 0 && <AnnouncementsContainer announcements={this.state.announcements} dismissAnnouncement={this.dismissAnnouncement} />}
         { this.state.authVisible && <Authorization currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} dismiss={this.dismissAuth} leaving={this.state.authLeaving} displayMessages={this.displayMessages} /> }
         <Main currentUser={this.state.currentUser} updateCurrentUser={this.updateCurrentUser} displayMessages={this.displayMessages} deleteAccount={this.deleteAccount} />
       </div>
