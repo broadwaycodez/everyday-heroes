@@ -77,7 +77,7 @@ const Queries = {
   },
   async deleteAccount(userId) {
     try {
-      const res = await axios.delete(`/users/${userId}`)
+      const res = await axios.delete(`${URL}/users/${userId}`)
       return res.data
     } catch (e) {
       return {errors: [e.message]}

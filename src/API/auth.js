@@ -23,7 +23,7 @@ const Auth = {
 
   async update(user) {
     try {
-      const res = await axios.put(`/users/${user.id}`, user)
+      const res = await axios.put(`${URL}/users/${user.id}`, user)
       return res.data
     } catch (e) {
       return {server_error: e.message}
