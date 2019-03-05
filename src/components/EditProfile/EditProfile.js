@@ -90,7 +90,7 @@ class EditProfile extends React.Component {
         </form>
         <hr className="editProfile__hr" />
         <div className="editProfile__buttons">
-          <button type="delete" className="editProfile__delete">Close Your account</button>
+          <button type="delete" className="editProfile__delete" onClick={this.props.deleteAccount}>Close Your Account</button>
         </div>
       </div>
     )

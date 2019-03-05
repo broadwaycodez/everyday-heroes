@@ -10,7 +10,7 @@ import ChallengeDetail from '../ChallengeDetail/ChallengeDetail'
 import Profile from '../Profile/Profile'
 import EditProfile from '../EditProfile/EditProfile'
 
-const Main = ({currentUser, displayMessages, updateCurrentUser}) => {
+const Main = ({currentUser, displayMessages, updateCurrentUser, deleteAccount}) => {
   return (
     <div className="Main">
       <Switch>
@@ -30,7 +30,7 @@ const Main = ({currentUser, displayMessages, updateCurrentUser}) => {
         }} />
         <Route path="/profile/edit" render={ () => {
           if (currentUser) {
-            return <EditProfile currentUser={currentUser} displayMessages={displayMessages} updateCurrentUser={updateCurrentUser} />
+            return <EditProfile currentUser={currentUser} displayMessages={displayMessages} deleteAccount={deleteAccount} updateCurrentUser={updateCurrentUser} />
           } else {
             return <Redirect to="/" />
           }
