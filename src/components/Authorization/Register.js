@@ -48,7 +48,6 @@ class Register extends React.Component {
       })
     }
     if (data.user) {
-      this.props.displayMessages(['Your account has been created.'], null)
       const signInData = await Auth.signIn(newUser.email, newUser.password)
       const {auth_token, errors} = signInData
       if (errors) {

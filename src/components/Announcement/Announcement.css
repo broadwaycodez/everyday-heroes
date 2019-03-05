@@ -1,0 +1,72 @@
+.Announcement {
+  overflow: scroll;
+  width: 100%;
+  max-width: 700px;
+  height: 100%;
+  overflow: scroll;
+  background-color: beige;
+  color: black;
+  padding: 15px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, .5);
+  position: relative;
+  animation: slide-in .5s ease-out;
+}
+
+.announcement--leaving {
+  transform: translateY(-100vh);
+  animation: slide-out .5s ease-in;
+}
+
+.announcement__heading {
+  font-size: 1.4rem;
+  text-shadow: 2px 4px 4px rgba(0, 0, 0, .3);
+
+}
+
+.announcement__dismiss {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 1em;
+  text-align: right;
+  font-size: 1.5rem;
+  text-shadow: 2px 4px 4px rgba(0, 0, 0, .3);
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateY(100vh);
+  }
+  50% {
+    transform: translateY(25vh);
+  }
+  75% {
+    transform: translateY(8vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(30px);
+  }
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .announcement__dismiss {
+    cursor: pointer;
+    transition: all .3s;
+  }
+  .announcement__dismiss:hover {
+    color: rgba(157, 4, 4, 1);
+    transform: scale(1.1,1.1);
+  }
+}
