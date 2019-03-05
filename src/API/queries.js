@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const URL = 'https://everyday-heroes-api.herokuapp.com'
+const URL = ''
 
 const Queries = {
   async getUser(userId) {
