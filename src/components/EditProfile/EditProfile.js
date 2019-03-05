@@ -1,7 +1,6 @@
 import React from 'react'
 import './EditProfile.css'
 import BackButton from '../BackButton/BackButton'
-import BottomButton from '../BottomButton/BottomButton'
 import Validate from '../../utils/validation'
 import Auth from '../../API/auth';
 import { Redirect } from 'react-router-dom'
@@ -51,6 +50,11 @@ class EditProfile extends React.Component {
     this.setState({ [name]: value })
   }
 
+  handleCancel = e => {
+    e.preventDefault()
+    this.setState({done: true})
+  }
+
   render() {
     if (this.state.done) {
       return <Redirect to="/profile" />
@@ -79,8 +83,15 @@ class EditProfile extends React.Component {
             <label htmlFor="screen_name">Screen Name</label>
             <input type="text" name="screen_name" placeholder={errors.screen_name} value={this.state.screen_name} onChange={this.handleChange} />
           </div>
-          <BottomButton>Submit</BottomButton>
+          <div className="editProfile__buttons">
+            <button type="submit" className="editProfile__submit">Submit</button>
+            <button className="editProfile__cancel" type="cancel" onClick={this.handleCancel}>Cancel</button>
+          </div>
         </form>
+        <hr className="editProfile__hr" />
+        <div className="editProfile__buttons">
+          <button type="delete" className="editProfile__delete">Close Your account</button>
+        </div>
       </div>
     )
   }
