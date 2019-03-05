@@ -83,7 +83,6 @@ class App extends Component {
       currentUser: user,
     })
     this.dismissAuth()
-    this.displayMessages([`Welcome ${this.state.currentUser.screen_name}`], null)
     this.checkForAnnouncements()
   }
 
