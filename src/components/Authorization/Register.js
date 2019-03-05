@@ -34,8 +34,6 @@ class Register extends React.Component {
     }
     const {isValid, errors} = Validate.register(newUser)
     if (!isValid) {
-      console.log('not valid')
-      console.log(errors)
       return this.setState({
         errors: errors,
         working: false

@@ -84,6 +84,19 @@ class App extends Component {
     this.displayMessages([`Welcome ${this.state.currentUser.screen_name}`], null)
   }
 
+  updateCurrentUser = async () => {
+    if (!this.state.currentUser) {
+      return this.checkForAuthToken()
+    }
+    const { user, errors } = await Queries.getUser(this.state.currentUser.id)
+    if (errors) {
+      return this.setState({errors})
+    }
+    await this.setState({
+      currentUser: user,
+    })
+  }
+
   checkForAuthToken = () => {
     if (localStorage.edhAuthToken) {
       const auth_token = localStorage.edhAuthToken
@@ -113,7 +126,7 @@ class App extends Component {
         <UserMessages errors={this.state.errors} messages={this.state.messages} dismissMessage={this.dismissMessage} />
         <Header currentUser={this.state.currentUser} logoutUser={this.logoutUser} requestAuth={this.displayAuth} />
         { this.state.authVisible && <Authorization currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} dismiss={this.dismissAuth} leaving={this.state.authLeaving} displayMessages={this.displayMessages} /> }
-        <Main currentUser={this.state.currentUser} displayMessages={this.displayMessages} />
+        <Main currentUser={this.state.currentUser} updateCurrentUser={this.updateCurrentUser} displayMessages={this.displayMessages} />
       </div>
     )
   }

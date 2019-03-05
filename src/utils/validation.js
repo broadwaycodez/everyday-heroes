@@ -27,6 +27,16 @@ const Validate = {
       errors.password = "Password is required"
     }
     return sendResponse(errors)
+  },
+
+  update(user) {
+    const errors = {}
+    for (let key in user) {
+      if (!user[key]) {
+        errors[key] = `${formNames[key]} is required`
+      }
+    }
+    return sendResponse(errors)
   }
 }
 
