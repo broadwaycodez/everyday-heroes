@@ -34,6 +34,11 @@ class Register extends React.Component {
     }
     const {isValid, errors} = Validate.register(newUser)
     if (!isValid) {
+      const errorsArray = []
+      for (let key in errors) {
+        errorsArray.push(errors[key])
+      }
+      this.props.displayMessages(null, errorsArray)
       return this.setState({
         errors: errors,
         working: false
@@ -42,6 +47,11 @@ class Register extends React.Component {
     const data = await Auth.register(newUser)
     
     if (data.errors) {
+      const errorsArray = []
+      for (let key in errors) {
+        errorsArray.push(errors[key])
+      }
+      this.props.displayMessages(null, errorsArray)
       return this.setState({
         errors: data.errors,
         working: false
