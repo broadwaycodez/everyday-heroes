@@ -18,6 +18,11 @@ class Login extends React.Component {
       const signInData = await Auth.signIn(this.state.email, this.state.password)
       const {auth_token, errors} = signInData
       if (errors) {
+        const errorsArray = []
+        for (let key in errors) {
+          errorsArray.push(errors[key])
+        }
+        this.props.displayMessages(null, errorsArray)
         return this.setState({errors})
       }
       this.props.setCurrentUser(auth_token)
@@ -30,6 +35,11 @@ class Login extends React.Component {
     e.preventDefault()
     const {isValid, errors} = Validate.login(this.state.email, this.state.password)
     if (!isValid) {
+      const errorsArray = []
+      for (let key in errors) {
+        errorsArray.push(errors[key])
+      }
+      this.props.displayMessages(null, errorsArray)
       return this.setState({ errors })
     }
     this.signIn()
