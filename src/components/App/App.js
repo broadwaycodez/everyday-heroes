@@ -134,10 +134,14 @@ class App extends Component {
   checkForAuthToken = () => {
     if (localStorage.edhAuthToken) {
       const auth_token = localStorage.edhAuthToken
-      this.setCurrentUser(auth_token, false)
-    } else {
-      this.setState({authVisible: true})
+      const decoded = jwt_decode(auth_token)
+      const {exp} = decoded
+      const now = Date.now() / 1000
+      if (exp > now) {
+        return this.setCurrentUser(auth_token, false)
+      }
     }
+    this.setState({authVisible: true})
   }
   
   logoutUser = () => {
