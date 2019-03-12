@@ -8,7 +8,7 @@ const PointsMeter = ({points}) => {
       return a.habit_id - b.habit_id
     }).map(habit => {
       return (
-        <ProgressBar key={habit.habit_id} title={habit.habit} earned={habit.earned} required={habit.required} />
+        <ProgressBar key={habit.habit_id} title={habit.habit} earned={habit.earned} streak={habit.streak} required={habit.required} />
       )
     })
   )

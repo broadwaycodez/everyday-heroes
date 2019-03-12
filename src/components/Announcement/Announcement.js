@@ -20,10 +20,12 @@ class Announcement extends React.Component {
     const leavingClass = this.state.leaving ? ' announcement--leaving' : ''
     const {announcement} = this.props
     return (
-      <div className={"Announcement" + leavingClass}>
+      <div className="Announcement-holder">
+        <div className={"Announcement" + leavingClass}>
+          <h2 className="announcement__heading">{announcement.title}</h2>
+          <div className="announcement__content" dangerouslySetInnerHTML={{__html: announcement.content}} />
+        </div>
         <div className="announcement__dismiss"><i className="fas fa-times" onClick={this.handleDismiss}></i></div>
-        <h2 className="announcement__heading">{announcement.title}</h2>
-        <div className="announcement__content" dangerouslySetInnerHTML={{__html: announcement.content}} />
       </div>
     )
   }
