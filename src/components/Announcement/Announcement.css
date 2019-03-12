@@ -9,7 +9,13 @@
   padding: 15px;
   box-shadow: 0 0 60px rgba(0, 0, 0, .5);
   position: relative;
+}
+
+.Announcement-holder {
+  position: relative;
   animation: slide-in .5s ease-out;
+  max-width: 700px;
+  height: 100%;
 }
 
 .announcement--leaving {
@@ -25,6 +31,7 @@
 
 .announcement__dismiss {
   position: absolute;
+  color: black;
   top: 5px;
   right: 10px;
   width: 1em;
