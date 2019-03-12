@@ -63,8 +63,24 @@
   animation: bar-expand 1.5s ease-out;
 }
 
-.progressBar__streak {
-  display: inline;
+.progressBar__measurement--lead {
+  box-shadow: 0 0 3px rgb(139, 157, 167) inset, 0 0 20px rgb(139, 157, 167);
+  background: linear-gradient(to bottom, #02110d  0%,#616363 39%,#02110d  100%);
+}
+
+.progressBar__measurement--bronze {
+  box-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 2px #fff inset, 0 0 4px #fff inset, 0 0 6px #e4bc84, 0 0 10px #e4bc84, 0 0 12px #e4bc84, 0 0 15px #e4bc84, 0 0 20px #e4bc84;
+  background: linear-gradient(to bottom, #66460c 0%,#e0b982 39%,#66460c 100%);
+}
+
+.progressBar__measurement--silver {
+  box-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 2px #fff inset, 0 0 4px #fff inset, 0 0 6px #f5fcfc, 0 0 10px #f5fcfc, 0 0 12px #f5fcfc, 0 0 15px #f5fcfc, 0 0 20px #f5fcfc;
+  background: linear-gradient(to bottom, #898a8a 0%,#e9ebeb 39%,#898a8a 100%);
+}
+
+.progressBar__measurement--gold {
+  box-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 2px #fff inset, 0 0 4px #fff inset, 0 0 6px #fde596, 0 0 10px #fde596, 0 0 12px #fde596, 0 0 15px #fde596, 0 0 20px #fde596;
+  background: linear-gradient(to bottom, #ba9e00  0%,#f8f9a7 39%,#ba9e00  100%);
 }
 
 @keyframes bar-expand {

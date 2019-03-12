@@ -4,7 +4,7 @@ import Utils from '../../utils/utils'
 
 const ProgressBar = ({title, earned, required, streak}) => {
   const percent = Utils.getPercent(earned, required)
-  console.log(streak)
+  const streakClass = streak ? ` progressBar__measurement--${streak}` : ''
   return (
     <div className="ProgressBar">
       <h4 className="progressBar__heading">{Utils.capitalize(title)}</h4>
@@ -15,7 +15,7 @@ const ProgressBar = ({title, earned, required, streak}) => {
             <div className="progressBar__streak">Streak: {streak}</div>
           )}
         </div>
-        <div className="progressBar__measurement" style={{width: `${percent}%`}}></div>
+        <div className={'progressBar__measurement' + streakClass} style={{width: `${percent}%`}}></div>
       </div>
     </div>
   )
