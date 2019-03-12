@@ -23,6 +23,10 @@ class Register extends React.Component {
     if (this.state.working) {
       return null
     }
+    this.performRegistration()
+  }
+
+  performRegistration = async () => {
     await this.setState({working: true})
     const newUser = {
       first_name: this.state.first_name,
@@ -34,40 +38,37 @@ class Register extends React.Component {
     }
     const {isValid, errors} = Validate.register(newUser)
     if (!isValid) {
-      const errorsArray = []
-      for (let key in errors) {
-        errorsArray.push(errors[key])
-      }
-      this.props.displayMessages(null, errorsArray)
-      return this.setState({
-        errors: errors,
-        working: false
-      })
+      return this.handleErrors(errors)
     }
+
     const data = await Auth.register(newUser)
-    
     if (data.errors) {
-      const errorsArray = []
-      for (let key in errors) {
-        errorsArray.push(errors[key])
-      }
-      this.props.displayMessages(null, errorsArray)
-      return this.setState({
-        errors: data.errors,
-        working: false
-      })
+      return this.handleErrors(data.errors)
     }
     if (data.user) {
-      const signInData = await Auth.signIn(newUser.email, newUser.password)
-      const {auth_token, errors} = signInData
-      if (errors) {
-        return this.setState({
-          errors: errors,
-          working: false
-        })
-      }
-      this.props.setCurrentUser(auth_token)
+      this.signInUser(newUser.email, newUser.password)
     }
+  }
+
+  signInUser = async (email, password) => {
+    const signInData = await Auth.signIn(email, password)
+    const {auth_token, errors} = signInData
+    if (errors) {
+      return this.handleErrors(errors)
+    }
+    this.props.setCurrentUser(auth_token)
+  }
+
+  handleErrors = errors => {
+    let errorsArray = []
+    for (let key in errors) {
+      errorsArray.push(errors[key])
+    }
+    this.props.displayMessages(null, errorsArray)
+    this.setState({
+      errors: errors,
+      working: false
+    })
   }
 
   handleChange = (e) => {

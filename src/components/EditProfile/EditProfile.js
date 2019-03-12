@@ -15,12 +15,21 @@ class EditProfile extends React.Component {
       email: currentUser.email,
       screen_name: currentUser.screen_name,
       errors: {},
-      done: false
+      done: false,
+      working: false,
     }
   }
 
   onFormSubmit = async e => {
     e.preventDefault()
+    if (this.state.working) {
+      return null
+    }
+    this.validateForm()
+  }
+
+  validateForm = async () => {
+    await this.setState({working: true})
     const user = {
       id: this.props.currentUser.id,
       first_name: this.state.first_name,
@@ -30,19 +39,33 @@ class EditProfile extends React.Component {
     }
     const { isValid, errors } = Validate.update(user)
     if (!isValid) {
-      return this.setState({ errors })
+      return this.handleErrors(errors)
     }
+    this.updateUser(user)
+  }
+
+  updateUser = async user => {
     const data = await Auth.update(user)
     if (data.errors) {
-      return this.setState({
-        errors: data.errors,
-      })
+      return this.handleErrors(data.errors)
     }
     if (data.user) {
       this.props.displayMessages(["Your account has been updated."], null)
       this.props.updateCurrentUser()
       this.setState({ done: true })
     }
+  }
+
+  handleErrors = errors => {
+    const errorsArray = []
+    for (let key in errors) {
+      errorsArray.push(errors[key])
+    }
+    this.props.displayMessages(null, errorsArray)
+    this.setState({
+      errors: errors,
+      working: false
+    })
   }
 
   handleChange = e => {

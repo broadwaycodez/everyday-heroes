@@ -10,39 +10,46 @@ class Login extends React.Component {
       email: '',
       password: '',
       errors: {},
+      working: false,
     }
   }
 
   signIn = async () => {
-    try {
-      const signInData = await Auth.signIn(this.state.email, this.state.password)
-      const {auth_token, errors} = signInData
-      if (errors) {
-        const errorsArray = []
-        for (let key in errors) {
-          errorsArray.push(errors[key])
-        }
-        this.props.displayMessages(null, errorsArray)
-        return this.setState({errors})
-      }
-      this.props.setCurrentUser(auth_token)
-    } catch (e) {
-      console.log(e.message)
+    const signInData = await Auth.signIn(this.state.email, this.state.password)
+    const {auth_token, errors} = signInData
+    if (errors) {
+      return this.handleErrros(errors)
     }
+    this.props.setCurrentUser(auth_token)
   }
 
-  onFormSubmit = e => {
+  onFormSubmit = async e => {
     e.preventDefault()
+    if (this.state.working) {
+      return null
+    }
+    await this.setState({working: true})
+    this.validateLogin()
+  }
+
+  validateLogin = () => {
     const {isValid, errors} = Validate.login(this.state.email, this.state.password)
     if (!isValid) {
-      const errorsArray = []
-      for (let key in errors) {
-        errorsArray.push(errors[key])
-      }
-      this.props.displayMessages(null, errorsArray)
-      return this.setState({ errors })
+      return this.handleErrros(errors)
     }
     this.signIn()
+  }
+
+  handleErrros = errors => {
+    const errorsArray = []
+    for (let key in errors) {
+      errorsArray.push(errors[key])
+    }
+    this.props.displayMessages(null, errorsArray)
+    this.setState({
+      errors: errors,
+      working: false
+    })
   }
 
   handleChange = e => {
