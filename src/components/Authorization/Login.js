@@ -74,8 +74,14 @@ class Login extends React.Component {
           </div>
           <button className="authorization__submit">Sign in!</button>
         </form>
+        <hr />
         <div className="authorization__switch">
-          <button className="authorization__switch-btn" onClick={this.props.switchScreen}>Don't have an account?</button>
+          <h3 className="authorization__sub-heading">Don't have an account?</h3>
+          <div className="authorization__switch-btns" >
+            <button className="authorization__switch-btn" onClick={this.props.switchScreen}>Sign up now!</button>
+            -OR-
+            <button className="authorization__switch-btn">Browse as Guest</button>
+          </div>
         </div>
       </div>    
     )
