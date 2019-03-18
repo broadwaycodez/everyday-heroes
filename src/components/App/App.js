@@ -75,15 +75,19 @@ class App extends Component {
     }
     setAuthToken(auth_token)
     const decoded = jwt_decode(auth_token)
-    const {user, errors} = await Queries.getUser(decoded.user_id)
-    if (errors) {
-      return this.displayMessages(null, errors)
+    try {
+      const {user, errors} = await Queries.getUser(decoded.user_id)
+      if (errors) {
+        return this.displayMessages(null, errors)
+      }
+      await this.setState({
+        currentUser: user,
+      })
+      this.dismissAuth()
+      this.checkForAnnouncements()
+    } catch (e) {
+      console.log(e.message)
     }
-    await this.setState({
-      currentUser: user,
-    })
-    this.dismissAuth()
-    this.checkForAnnouncements()
   }
 
   updateCurrentUser = async () => {
