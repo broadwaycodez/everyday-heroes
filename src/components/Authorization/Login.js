@@ -11,16 +11,29 @@ class Login extends React.Component {
       password: '',
       errors: {},
       working: false,
+      guestSignIn: false,
     }
   }
 
   signIn = async () => {
-    const signInData = await Auth.signIn(this.state.email, this.state.password)
+    const credentials = this.state.guestSignIn ? ['guest@ichoosetobeahero.com', 'guestguest'] : [this.state.email, this.state.password]
+    const signInData = await Auth.signIn(...credentials)
     const {auth_token, errors} = signInData
     if (errors) {
       return this.handleErrros(errors)
     }
     this.props.setCurrentUser(auth_token)
+  }
+
+  signInGuest = async () => {
+    await this.setState({
+      guestSignIn: true
+    })
+    this.signIn()
+  }
+
+  handleGuestClick = e => {
+    this.signInGuest()
   }
 
   onFormSubmit = async e => {
@@ -80,7 +93,7 @@ class Login extends React.Component {
           <div className="authorization__switch-btns" >
             <button className="authorization__switch-btn" onClick={this.props.switchScreen}>Sign up now!</button>
             -OR-
-            <button className="authorization__switch-btn">Browse as Guest</button>
+            <button className="authorization__switch-btn" onClick={this.handleGuestClick}>Browse as Guest</button>
           </div>
         </div>
       </div>    
