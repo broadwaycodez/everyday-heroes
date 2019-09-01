@@ -1,6 +1,8 @@
 # Everyday Heroes - Web
 
-The Everyday Heroes app is a daily habit tracker to train your inner hero. This technology serves as a tool to track progress through the Everyday Heroes program.
+The Everyday Heroes app is a daily habit tracker to train your inner hero. This technology serves as a tool to track progress through the Everyday Heroes program. 
+
+View the site live at [https://everyday-heroes.netlify.com](https://everyday-heroes.netlify.com)
 
 This application is served by the Everyday Heros API. Find the API code on GitHub [here](https://github.com/brian-ogilvie/everyday-heroes-api)
 
