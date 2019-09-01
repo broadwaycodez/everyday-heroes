@@ -2,7 +2,7 @@
 
 The Everyday Heroes app is a daily habit tracker to train your inner hero. This technology serves as a tool to track progress through the Everyday Heroes program.
 
-This application is served by the Everyday Heros API. Find the API code on GitHub [here](https://github.com/broadwaycodez/everyday-heroes-api)
+This application is served by the Everyday Heros API. Find the API code on GitHub [here](https://github.com/brian-ogilvie/everyday-heroes-api)
 
 The web app takes a mobile-first approach, as users are often meant to accomplish daily tasks while away from their home or desk. 
 
@@ -19,14 +19,13 @@ This project was built in React, using Axios for HTTP requests and D3.js for dat
 | Stack Layer | Technology Used |
 | :---: | :---: |
 | Database | Postgresql |
-| [API](https://github.com/broadwaycodez/everyday-heroes-api) | Ruby on Rails |
+| [API](https://github.com/brian-ogilvie/everyday-heroes-api) | Ruby on Rails |
 | Web Front-end | React |
 
 ### Technologies Used
 
 - React.js
-- D3.js
-- jwt-decode
+- jwt
 - axios
 - react-router-dom
 
