@@ -1,6 +1,5 @@
-import axios from 'axios'
-
-const URL = ''
+import axios from 'axios';
+import URL from './apiLocacation';
 
 const Queries = {
   async getUser(userId) {
